@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('url_link');
             $table->boolean('mandatory');
-            $table->longText('image');
+            $table->longText('image')->nullable();
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
 

@@ -44,7 +44,7 @@ class knowledgebaseController extends Controller
         }
 
 
-        $knowledgebases = $query->sortable(['date_knowledgebase'=>'desc'])->paginate(15);
+        $knowledgebases = $query->paginate(15);
         return view('knowledgebase.index', compact('knowledgebases','search'));
     }
 
@@ -97,7 +97,7 @@ class knowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'required|file|image|max:2048',
+            'image' => 'nullable|file|image|max:2048',
             'url_link' => 'required',
             'description' =>'required',
         ]);
@@ -127,7 +127,7 @@ class knowledgebaseController extends Controller
         $knowledgebase->title = $validatedData['title'];
         $knowledgebase->category_id = $validatedData['category'];
         $knowledgebase->mandatory = $validatedData['mandatory'];
-        $knowledgebase->image =$validatedData['image'];
+        $knowledgebase->image =NULL;
         $knowledgebase->url_link = $validatedData['url_link'];
         $knowledgebase->description =$validatedData['description'];
 
@@ -147,13 +147,13 @@ class knowledgebaseController extends Controller
                 break;
         }
         // Redirect to the index page with a success message
-        return redirect()->route('knowledgebase.index')->with('success', 'knowledgebase added successfully.');
+        return redirect()->route('knowledgebases.index')->with('success', 'knowledgebase added successfully.');
     }
 
     public function edit($id)
     {
         $categories = knowledgebaseCategory::orderBy('name','asc')->get();
-        $publishers = Publisher::orderBy('name','asc')->get();
+        //$publishers = Publisher::orderBy('name','asc')->get();
         $knowledgebase = knowledgebase::findOrFail($id);
         $selectedCategories = $knowledgebase->relatedCategories;
         return view('knowledgebases.edit', compact(['knowledgebase','categories','publishers','selectedCategories']));
@@ -168,11 +168,10 @@ class knowledgebaseController extends Controller
             'title' => 'required|string',
             'category' => 'required',
             'assignusers' => '',
-            'publisher' => 'required',
+            'mandatory' => 'required',
+            'image' => 'required|file|image|max:2048',
             'url_link' => 'required',
             'description' =>'required',
-            'published' =>'required',
-            'date_knowledgebase' => 'required|date_format:d/M/Y',
         ]);
          // Create a new instance of the knowledgebase model
          $knowledgebase = knowledgebase::findOrFail($id);
@@ -196,19 +195,14 @@ class knowledgebaseController extends Controller
                 }
             }
     
-            if(!is_numeric($validatedData['publisher'])){
-                $publisher = new Publisher();
-                $publisher->name = $validatedData['publisher'];
-                $publisher->save();
-                $validatedData['publisher']=$publisher->id;
-            }
+
              // Set the attributes on the model instance
-            $knowledgebase->title = $validatedData['title'];
-            $knowledgebase->published = $validatedData['published'];
-            $knowledgebase->category_id = $validatedData['category'];
-            $knowledgebase->publisher_id = $validatedData['publisher'];
-            $knowledgebase->description =$validatedData['description'];
-            $knowledgebase->url_link = $validatedData['url_link'];
+             $knowledgebase->title = $validatedData['title'];
+             $knowledgebase->category_id = $validatedData['category'];
+             $knowledgebase->mandatory = $validatedData['mandatory'];
+             $knowledgebase->image =$validatedData['image'];
+             $knowledgebase->url_link = $validatedData['url_link'];
+             $knowledgebase->description =$validatedData['description'];
             $knowledgebase->date_knowledgebase = Carbon::createFromFormat('d/M/Y',$validatedData['date_knowledgebase'])->format('Y-m-d');
     
             // update the knowledgebase to the database
@@ -218,9 +212,9 @@ class knowledgebaseController extends Controller
             if(!empty($validatedData['assignusers'])){
                 $knowledgebase->relatedCategories()->attach($validatedData['assignusers']);
             }
-            return redirect()->route('knowledgebase.index')->with('success', 'knowledgebase updated successfully.');
+            return redirect()->route('knowledgebases.index')->with('success', 'knowledgebase updated successfully.');
         }else{
-            return redirect()->route('knowledgebase.index')->with('error', 'knowledgebase maybe updated or deleted, please try again.');
+            return redirect()->route('knowledgebases.index')->with('error', 'knowledgebase maybe updated or deleted, please try again.');
         }
 
         
@@ -234,9 +228,9 @@ class knowledgebaseController extends Controller
             $selectedIds = $request->input('selectedIds');
             if (!empty($selectedIds)) {
                 knowledgebase::whereIn('id', explode(',', $selectedIds))->delete();
-                return redirect()->route('knowledgebase.index')->with('success', 'Selected knowledgebases deleted successfully.');
+                return redirect()->route('knowledgebases.index')->with('success', 'Selected knowledgebases deleted successfully.');
             } else {
-                return redirect()->route('knowledgebase.index')->with('error', 'No knowledgebase selected for deletion.');
+                return redirect()->route('knowledgebases.index')->with('error', 'No knowledgebase selected for deletion.');
             }
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -254,9 +248,9 @@ class knowledgebaseController extends Controller
                     $newknowledgebase->created_at = Carbon::now();
                     $newknowledgebase->save();
                 }
-                return redirect()->route('knowledgebase.index')->with('success', 'Selected knowledgebases copied successfully.');
+                return redirect()->route('knowledgebases.index')->with('success', 'Selected knowledgebases copied successfully.');
             } else {
-                return redirect()->route('knowledgebase.index')->with('error', 'No knowledgebase selected for copy.');
+                return redirect()->route('knowledgebases.index')->with('error', 'No knowledgebase selected for copy.');
             }
         } catch (Exception $e) {
             Log::error($e->getMessage());

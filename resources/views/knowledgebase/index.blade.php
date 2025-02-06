@@ -61,14 +61,12 @@
                                 <th ></th>
                                 <th style="width: 20%">@sortablelink('title')</th>
                                 <th style="width: 10%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 10%">Related Category</th>
+                                <th style="width: 10%">Assigned Users</th>
                                 <th style="width: 25%">Description
                                 </th>
                                 
-                                <th style="width: 5%">@sortablelink('published','Publish')
+                                <th style="width: 5%">@sortablelink('mandatory','Mandatory')
                                 </th>
-                                <th style="width: 15%">@sortablelink('publisher.name','Publisher')</th>
-                                <th style="width: 15%">@sortablelink('date_knowledgebase','Date of knowledgebase')</th>
                             </tr>
                         </thead>
                         <tbody>

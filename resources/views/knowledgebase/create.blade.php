@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="assignusers" class="fw-bold">Assign Users</label><br>
+                                <label for="assignusers" class="fw-bold"><span class="text-danger">*</span>Assign Users</label><br>
                                 <select name="assignusers[]" id="assignusers" class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
                             
                                     @foreach ($users as $user)
