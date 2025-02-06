@@ -58,15 +58,13 @@
                     <table class="w-full mt-4 table">
                         <thead>
                             <tr>
-                                <th ></th>
-                                <th style="width: 20%">@sortablelink('title')</th>
-                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
+                                <th style="width: 15%">@sortablelink('title')</th>
+                                <th style="width: 15%">@sortablelink('category.name','Category')</th>
                                 <th style="width: 10%">Assigned Users</th>
-                                <th style="width: 25%">Description
-                                </th>
-                                
-                                <th style="width: 5%">@sortablelink('mandatory','Mandatory')
-                                </th>
+                                <th style="width: 25%">Description</th>
+                                <th style="width: 10%">File</th>
+                                <th style="width: 15%">@sortablelink('mandatory','Mandatory')
+                                <th style="width: 10%">Status</th>
                             </tr>
                         </thead>
                         <tbody>

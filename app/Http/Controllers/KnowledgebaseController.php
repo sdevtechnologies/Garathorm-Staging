@@ -110,10 +110,10 @@ class knowledgebaseController extends Controller
         }
         
         if(!empty($validatedData['assignusers'])){
-            foreach($validatedData['assignusers'] as $key=>$user){
-                if(!is_numeric($user) && trim($category) != '' ){
-                    $law_category = new User();
-                    $law_category->name = $user;
+            foreach($validatedData['assignusers'] as $key=>$category){
+                if(!is_numeric($category) && trim($category) != '' ){
+                    $law_category = new knowledgebaseCategory();
+                    $law_category->name = $category;
                     $law_category->save();
                     $validatedData['assignusers'][$key]=$law_category->id;
                 }
