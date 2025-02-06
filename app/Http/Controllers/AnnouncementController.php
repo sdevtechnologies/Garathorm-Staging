@@ -27,10 +27,10 @@ class AnnouncementController extends Controller
             if(strtolower($request->input('sort'))!=='category.name'){
                 $query->join('announcement_categories','announcements.category_id','=','announcement_categories.id');
             }
-                $query->join('publishers','announcement.publisher_id','=','publishers.id')
+                $query->join('publishers','announcements.publisher_id','=','publishers.id')
                 ->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%")
-                ->orWhere('announcements_categories.name', 'like', "%$search%")
+                ->orWhere('announcement_categories.name', 'like', "%$search%")
                 ->orWhere('publishers.name', 'like', "%$search%");
 
             
@@ -39,7 +39,7 @@ class AnnouncementController extends Controller
                 $query->orWhere('date_announcement','like',"%$searchDate%");
             }
 
-            $query->select('announcement.*');
+            $query->select('announcements.*');
 
         }
 
@@ -57,7 +57,7 @@ class AnnouncementController extends Controller
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->join('announcement_categories','announcement.category_id','=','announcement_categories.id')
-            ->join('publishers','announcement.publisher_id','=','publishers.id')
+            ->join('publishers','announcements.publisher_id','=','publishers.id')
                 ->where('announcement.created_at','>=',$twoWeeksAgoDate)
                 ->where(function($subquery) use ($search){    
                     $subquery->where('title', 'like', "%$search%")
