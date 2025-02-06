@@ -80,10 +80,13 @@ class knowledgebaseController extends Controller
         $knowledgebases = $query->sortable(['created_at'=>'desc'])->paginate(15);
         return view('knowledgebase.index', compact('knowledgebases','search'));
     }
+
     public function create(){
         $categories = knowledgebaseCategory::orderBy('name','asc')->get();
         $publishers = Publisher::orderBy('name','asc')->get();
-        return view('knowledgebase.create',compact(['categories','publishers']));
+        $users = User::all();
+
+        return view('knowledgebase.create',compact(['categories','publishers','users']));
     }
 
     public function store(Request $request)
@@ -92,12 +95,11 @@ class knowledgebaseController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'category' => 'required',
-            'relatedcategory' => '',
-            'publisher' => 'required',
+            'assignusers' => '',
+            'mandatory' => 'required',
+            'image' => 'required|file|image|max:2048',
             'url_link' => 'required',
             'description' =>'required',
-            'published' =>'required',
-            'date_knowledgebase' => 'required|date_format:d/M/Y',
         ]);
 
         if(!is_numeric($validatedData['category'])){
@@ -107,40 +109,32 @@ class knowledgebaseController extends Controller
             $validatedData['category']=$law_category->id;
         }
         
-        if(!empty($validatedData['relatedcategory'])){
-            foreach($validatedData['relatedcategory'] as $key=>$category){
-                if(!is_numeric($category) && trim($category) != '' ){
-                    $law_category = new knowledgebaseCategory();
-                    $law_category->name = $category;
+        if(!empty($validatedData['assignusers'])){
+            foreach($validatedData['assignusers'] as $key=>$user){
+                if(!is_numeric($user) && trim($category) != '' ){
+                    $law_category = new User();
+                    $law_category->name = $user;
                     $law_category->save();
-                    $validatedData['relatedcategory'][$key]=$law_category->id;
+                    $validatedData['assignusers'][$key]=$law_category->id;
                 }
             }
-        }
-
-        if(!is_numeric($validatedData['publisher'])){
-            $publisher = new Publisher();
-            $publisher->name = $validatedData['publisher'];
-            $publisher->save();
-            $validatedData['publisher']=$publisher->id;
         }
 
         // Create a new instance of the knowledgebase model
         $knowledgebase = new knowledgebase();
 
         // Set the attributes on the model instance
-        $knowledgebase->published = $validatedData['published'];
         $knowledgebase->title = $validatedData['title'];
         $knowledgebase->category_id = $validatedData['category'];
-        $knowledgebase->publisher_id = $validatedData['publisher'];
-        $knowledgebase->description =$validatedData['description'];
+        $knowledgebase->mandatory = $validatedData['mandatory'];
+        $knowledgebase->image =$validatedData['image'];
         $knowledgebase->url_link = $validatedData['url_link'];
-        $knowledgebase->date_knowledgebase = Carbon::createFromFormat('d/M/Y',$validatedData['date_knowledgebase'])->format('Y-m-d');
+        $knowledgebase->description =$validatedData['description'];
 
         // Save the knowledgebase to the database
         $knowledgebase->save();
-         if(!empty($validatedData['relatedcategory'])){
-             $knowledgebase->relatedCategories()->attach($validatedData['relatedcategory']);
+         if(!empty($validatedData['assignusers'])){
+             $knowledgebase->relatedCategories()->attach($validatedData['assignusers']);
          }
         switch($request->input('action')){
             case "save_notify_all":
@@ -173,7 +167,7 @@ class knowledgebaseController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'category' => 'required',
-            'relatedcategory' => '',
+            'assignusers' => '',
             'publisher' => 'required',
             'url_link' => 'required',
             'description' =>'required',
@@ -191,13 +185,13 @@ class knowledgebaseController extends Controller
                 $validatedData['category']=$law_category->id;
             }
             
-            if(!empty($validatedData['relatedcategory'])){
-                foreach($validatedData['relatedcategory'] as $key=>$category){
+            if(!empty($validatedData['assignusers'])){
+                foreach($validatedData['assignusers'] as $key=>$category){
                     if(!is_numeric($category) && trim($category) != '' ){
                         $law_category = new knowledgebaseCategory();
                         $law_category->name = $category;
                         $law_category->save();
-                        $validatedData['relatedcategory'][$key]=$law_category->id;
+                        $validatedData['assignusers'][$key]=$law_category->id;
                     }
                 }
             }
@@ -221,8 +215,8 @@ class knowledgebaseController extends Controller
             $knowledgebase->save();
             
             $knowledgebase->relatedCategories()->detach();   
-            if(!empty($validatedData['relatedcategory'])){
-                $knowledgebase->relatedCategories()->attach($validatedData['relatedcategory']);
+            if(!empty($validatedData['assignusers'])){
+                $knowledgebase->relatedCategories()->attach($validatedData['assignusers']);
             }
             return redirect()->route('knowledgebase.index')->with('success', 'knowledgebase updated successfully.');
         }else{

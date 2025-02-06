@@ -49,59 +49,33 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="relatedcategory" class="fw-bold">Related Category</label><br>
-                                <select name="relatedcategory[]" id="relatedcategory" class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
+                                <label for="assignusers" class="fw-bold">Assign Users</label><br>
+                                <select name="assignusers[]" id="assignusers" class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
                             
-                                    @foreach ($categories as $category)
-                                        <option value="{{$category->id}}" {{ old('relatedcategory')==$category->id ? "selected" : "" }}>{{$category->name}}</option>    
+                                    @foreach ($users as $user)
+                                        <option value="{{$user->id}}" {{ old('assignusers')==$user->id ? "selected" : "" }}>{{$user->name}}</option>    
                                     @endforeach
                                     
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <label for="published" class="fw-bold"><span class="text-danger">*</span>Publish</label><br>
+                                <label for="mandatory" class="fw-bold"><span class="text-danger">*</span>Mandatory</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="1" name="published" id="publishedyes" checked>
-                                    <label class="form-check-label" for="publishedyes">
+                                    <input class="form-check-input" type="radio" value="1" name="mandatory" id="mandatoryyes" checked>
+                                    <label class="form-check-label" for="mandatoryyes">
                                     Yes
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="0" name="published" id="publishedno">
-                                    <label class="form-check-label" for="publishedno">
+                                    <input class="form-check-input" type="radio" value="0" name="mandatory" id="mandatoryno">
+                                    <label class="form-check-label" for="mandatoryno">
                                     No
                                     </label>
                                 </div>
-                                
                             </div>
-                            <div class="col-md-3">
-                                <label for="publisher" class="fw-bold"><span class="text-danger">*</span>Publisher</label>
-                                <select name="publisher" id="publisher" class="form-control" style="width: 100%" required>
-                                    <option value="">Select Publisher</option>
-                                    @foreach ($publishers as $publisher)
-                                        <option value="{{$publisher->id}}" {{ old('publisher')==$publisher->id ? "selected" : "" }}>{{$publisher->name}}</option>    
-                                    @endforeach
-                                    
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="date_knowledgebase" class="fw-bold"><span class="text-danger">*</span>Date of knowledgebase</label>
-                                <div class="input-group log-event" id="date_incident" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                                    <input id="date_knowledgebaseInput"  name="date_knowledgebase" type="text" class="form-control" data-td-target="#date_knowledgebase" value="{{ old('date_knowledgebase') }}"/>
-                                    <span class="input-group-text" data-td-target="#date_knowledgebase" data-td-toggle="datetimepicker" >
-                                    <i class="fas fa-calendar"></i>
-                                    </span>
-                                </div>
-                                <!--
-                                <label for="date_incident" class="fw-bold">Date of Incident</label>
-                                <div class="input-group date" id="datepicker">
-                                    <input type="text" class="form-control" name="date_incident"  value="{{ old('date_incident') }}" id="date_incident" required/>
-                                    <span class="input-group-append">
-                                      <span class="input-group-text bg-light d-block">
-                                        <i class="fa fa-calendar"></i>
-                                      </span>
-                                    </span>
-                                </div>-->
+                            <div class="col-md-1">
+                                <label for="category" class="fw-bold"><span class="text-danger">*</span>Image</label>
+                                <input class="form-check-input" type="file" name="imageName" id="image">
                             </div>
                         </div>
                         <div class="mb-4">
@@ -169,10 +143,10 @@
             width: 'resolve',
             placeholder: "Select category"
         });
-        $("#relatedcategory").select2({
+        $("#assignusers").select2({
             tags: true,
             width: 'resolve',
-            placeholder: "Select related categories"
+            placeholder: "Select users"
         });
         $("#publisher").select2({
             tags: true,
