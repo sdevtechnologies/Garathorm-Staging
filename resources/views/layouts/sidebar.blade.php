@@ -61,6 +61,12 @@
                             Defense Leaks Knowledgebase
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="{{route('knowledgebases.index')}}" class="sidebar-link {{$selectedMenu=='Knowledgebase' ? 'active' : ''}}">
+                            <i class="fa-solid fa-shield pe-2"></i>
+                            Knowledgebase
+                        </a>
+                    </li>
                 </ul>
             </li>
             @if(Auth::user()->hasRole('admin'))
