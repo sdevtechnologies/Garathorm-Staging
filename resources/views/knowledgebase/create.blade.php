@@ -73,9 +73,15 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <label for="category" class="fw-bold"><span class="text-danger">*</span>Image</label>
-                                <input class="form-check-input" type="file" name="imageName" id="image">
+                            <div class="col-md-3 ml-3">
+                                <label for="file" class="fw-bold">
+                                    <span class="text-danger">*</span> Upload File
+                                </label>
+
+                                <input class="form-upload-file" type="file" name="fileName" id="file" 
+                                    accept=".jpg, .jpeg, .gif, .txt, .pdf">
+
+                                <small class="text-muted">Allowed formats: JPG, GIF, TXT, PDF</small>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -156,4 +162,28 @@
     });
     
     </script>
+    <style>
+    .form-upload-file {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #0d6efd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        outline: none;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-upload-file:focus {
+        border-color: #0b5ed7;
+    }
+
+    .text-muted {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
 </x-app-layout>

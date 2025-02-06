@@ -59,16 +59,13 @@
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 20%">@sortablelink('title')</th>
-                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 10%">Related Category</th>
-                                <th style="width: 25%">Description
-                                </th>
-                                
-                                <th style="width: 5%">@sortablelink('published','Publish')
-                                </th>
-                                <th style="width: 15%">@sortablelink('publisher.name','Publisher')</th>
+                                <th style="width: 15%">@sortablelink('title')</th>
+                                <th style="width: 15%">@sortablelink('category.name','Category')</th>
+                                <th style="width: 15%">Related Category</th>
+                                <th style="width: 20%">Description</th>
+                                <th style="width: 10%">File</th>
                                 <th style="width: 15%">@sortablelink('date_knowledgebase','Date of knowledgebase')</th>
+                                <th style="width: 10%">Status</th>
                             </tr>
                         </thead>
                         <tbody>
