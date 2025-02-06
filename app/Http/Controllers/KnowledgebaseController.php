@@ -27,10 +27,10 @@ class knowledgebaseController extends Controller
             if(strtolower($request->input('sort'))!=='category.name'){
                 $query->join('knowledgebase_categories','knowledgebases.category_id','=','knowledgebase_categories.id');
             }
-                $query->join('publishers','knowledgebase.publisher_id','=','publishers.id')
+                $query->join('publishers','knowledgebases.publisher_id','=','publishers.id')
                 ->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%")
-                ->orWhere('knowledgebases_categories.name', 'like', "%$search%")
+                ->orWhere('knowledgebase_categories.name', 'like', "%$search%")
                 ->orWhere('publishers.name', 'like', "%$search%");
 
             
