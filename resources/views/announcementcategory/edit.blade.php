@@ -6,7 +6,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl">Category - Incidents and Announcements</h3>
+                <h3 class="text-2xl">Category - Defense Leaks</h3>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">

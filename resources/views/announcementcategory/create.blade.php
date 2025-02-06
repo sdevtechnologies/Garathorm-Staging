@@ -6,12 +6,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl"> - Incidents and Announcements</h3>
+                <h3 class="text-2xl">Category - Defense Leaks</h3>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">
                     <div class="text-right">
-                        <a href="{{route('announcement.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
+                        <a href="{{route('announcementcategory.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
                     </div>
                     @if ($errors->any())
                         <div class="mt-2">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     @endif
-                    <form action="{{ route('announcement.store') }}" method="POST">
+                    <form action="{{ route('announcementcategory.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="name" class="fw-bold"> Name</label>

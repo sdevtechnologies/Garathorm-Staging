@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('knwoledgebases', function (Blueprint $table) {
-            $table->unsignedBigInteger('published');
-            $table->id();$table->string('title');
+        Schema::create('knowledgebases', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('publisher_id');
-            $table->date('date_knwoledgebase');
             $table->longText('description');
             $table->string('url_link');
+            $table->boolean('mandatory');
+            $table->longText('image');
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
 
