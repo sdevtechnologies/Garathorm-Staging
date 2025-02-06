@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="selectedMenu">
-        {{"knowledgebases"}}
+        {{"knowledgebase"}}
     </x-slot>
 
     <div class="py-12">

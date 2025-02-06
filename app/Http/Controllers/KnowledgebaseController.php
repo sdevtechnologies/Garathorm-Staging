@@ -27,19 +27,12 @@ class knowledgebaseController extends Controller
             if(strtolower($request->input('sort'))!=='category.name'){
                 $query->join('knowledgebase_categories','knowledgebases.category_id','=','knowledgebase_categories.id');
             }
-                $query->join('publishers','knowledgebases.publisher_id','=','publishers.id')
+                $query
                 ->where('title', 'like', "%$search%")
                 ->orWhere('description', 'like', "%$search%")
-                ->orWhere('knowledgebase_categories.name', 'like', "%$search%")
-                ->orWhere('publishers.name', 'like', "%$search%");
+                ->orWhere('knowledgebase_categories.name', 'like', "%$search%");
 
-            
-            if (DateTime::createFromFormat('d/M/Y',$search) !== false){
-                $searchDate = Carbon::createFromFormat('d/M/Y',$search)->format('Y-m-d');
-                $query->orWhere('date_knowledgebase','like',"%$searchDate%");
-            }
-
-            $query->select('knowledgebase.*');
+            $query->select('knowledgebases.*');
 
         }
 

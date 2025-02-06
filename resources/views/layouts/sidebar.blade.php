@@ -32,11 +32,11 @@
             </li>
             
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link {{$selectedMenu=='Laws' || $selectedMenu=='Industry' || $selectedMenu=='Incident' || $selectedMenu=='Announcement' ? 'active' : 'collapsed'}}" data-bs-target="#Resources" data-bs-toggle="collapse" aria-expanded="false">
+                <a href="#" class="sidebar-link {{$selectedMenu=='Laws' || $selectedMenu=='Industry' || $selectedMenu=='Incident' || $selectedMenu=='Announcement' || $selectedMenu=='knowledgebase' ? 'active' : 'collapsed'}}" data-bs-target="#Resources" data-bs-toggle="collapse" aria-expanded="false">
                     
                     Resources
                 </a>
-                <ul id="Resources" class="sidebar-dropdown list-unstyled collapse {{$selectedMenu=='Laws' || $selectedMenu=='Industry' || $selectedMenu=='Incident' || $selectedMenu=='Announcement'? 'show' : ''}}" data-bs-parent="#sidebar">
+                <ul id="Resources" class="sidebar-dropdown list-unstyled collapse {{$selectedMenu=='Laws' || $selectedMenu=='Industry' || $selectedMenu=='Incident' || $selectedMenu=='Announcement' || $selectedMenu=='knowledgebase' ? 'show' : ''}}" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="{{route('incident.index')}}" class="sidebar-link {{$selectedMenu=='Incident' ? 'active' : ''}}">
                             <i class="fa-solid fa-bullhorn pe-2"></i>
