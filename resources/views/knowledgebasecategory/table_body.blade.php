@@ -1,6 +1,6 @@
 @foreach ($categories as $category)
     <tr>
-        <td><input type="checkbox" name="selectedIds[]"  data-url="{{route('knowledgebasecategory.edit',$category)}}" value="{{ $category->id }}"></td>
+        <td><input type="checkbox" name="selectedIds[]"  data-url="{{route('knowledgebasecategories.edit',$category)}}" value="{{ $category->id }}"></td>
         <td style="width: 100%" class="text-primary">{{ $category->name }}</td>
     </tr>
 @endforeach

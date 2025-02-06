@@ -6,12 +6,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl">Defense Leak Knowledgebase</h3>
+                <h3 class="text-2xl">Knowledgebase</h3>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">
                     <div class="text-right">
-                        <a href="{{route('knowledgebase.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
+                        <a href="{{route('knowledgebases.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
                     </div>
                     @if ($errors->any())
                         <div class="mt-2">
