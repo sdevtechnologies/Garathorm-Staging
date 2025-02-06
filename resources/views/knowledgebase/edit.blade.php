@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">
                     <div class="text-right">
-                        <a href="{{route('knowledgebase.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
+                        <a href="{{route('knowledgebases.index')}}" class="btn btn-danger"><i class="fa-solid fa-xmark pe-2"></i>Close</a>
                     </div>
                     @if ($errors->any())
                         <div class="mt-2">

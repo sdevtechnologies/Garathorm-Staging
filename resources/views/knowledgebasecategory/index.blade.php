@@ -9,8 +9,8 @@
         
         <div class=" mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl">Category - Incidents and knowledgebases</h3>
-                <a class="btn btn-light-green" href="{{ route('knowledgebasecategory.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Category</a>
+                <h3 class="text-2xl">Category - Knowledgebase</h3>
+                <a class="btn btn-light-green" href="{{ route('knowledgebasecategories.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Category</a>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class=" mx-auto px-4 py-4">
@@ -29,14 +29,14 @@
                     <div class="d-flex flex-row">
                         <a class="btn btn-primary m-1" id="viewModeButton"><i class="fa-regular fa-eye pe-2"></i>View</a>
                         <a class="btn btn-danger m-1" id="deleteModeButton"><i class="fa-solid fa-trash pe-2"></i></i>Remove</a>
-                        <form id="deleteSelectedForm" action="{{ route('knowledgebasecategory.deleteSelected') }}" method="POST">
+                        <form id="deleteSelectedForm" action="{{ route('knowledgebasecategories.deleteSelected') }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" id="selectedIds" name="selectedIds">
                             
                         </form>
                     
-                        <form action="{{ route('knowledgebasecategory.index') }}" method="GET" class="flex-fill">
+                        <form action="{{ route('knowledgebasecategories.index') }}" method="GET" class="flex-fill">
                             <div class="flex items-center">
                                 <input type="text" name="search" value="{{$search}}"
                                     class="border-gray-300 m-1 w-auto focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm flex-1 mr-2 py-1 px-2"

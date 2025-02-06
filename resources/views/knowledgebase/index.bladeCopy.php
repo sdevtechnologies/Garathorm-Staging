@@ -9,8 +9,8 @@
         
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl">knowledgebases</h3>
-                <a class="btn btn-light-green" href="{{ route('knowledgebase.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add knowledgebases and knowledgebases</a>
+                <h3 class="text-2xl">Knowledgebase</h3>
+                <a class="btn btn-light-green" href="{{ route('knowledgebase.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Knowledgebases</a>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">

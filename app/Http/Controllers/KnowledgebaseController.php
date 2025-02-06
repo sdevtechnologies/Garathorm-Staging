@@ -162,7 +162,7 @@ class knowledgebaseController extends Controller
         $publishers = Publisher::orderBy('name','asc')->get();
         $knowledgebase = knowledgebase::findOrFail($id);
         $selectedCategories = $knowledgebase->relatedCategories;
-        return view('knowledgebase.edit', compact(['knowledgebase','categories','publishers','selectedCategories']));
+        return view('knowledgebases.edit', compact(['knowledgebase','categories','publishers','selectedCategories']));
     }
 
     public function update(Request $request, $id)
