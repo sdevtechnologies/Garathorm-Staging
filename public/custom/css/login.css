@@ -1,0 +1,29 @@
+.login_BG {
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #292b2c;
+    background: url("../../images/PEZA_BG2_DIM.jpg") no-repeat fixed;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.login_container{
+    background: #ffff;
+    width: 100%;
+    max-width: 950px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.login_logo {
+    max-width: 250px;
+}
+
+.login_separator{
+   margin-left: 45%;
+
+}
