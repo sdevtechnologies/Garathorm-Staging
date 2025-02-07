@@ -18,6 +18,10 @@
         -webkit-box-orient: vertical;">{{ $knowledgebase->description }}</td>
         <td style="width: 10%"></td>
         <td style="width: 15%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
-        <td style="width: 10%"></td>
+        <td style="width: 10%">
+            @foreach($knowledgebase->relatedCategories as $category)
+            {{ $category->status == 0 ? "INCOMPLETE" : "COMPLETE"}}<br>
+            @endforeach
+        </td>
     </tr>
 @endforeach
