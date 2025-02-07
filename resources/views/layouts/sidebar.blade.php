@@ -63,7 +63,7 @@
                     </li>
                     <li class="sidebar-item">
                         <a href="{{route('knowledgebases.index')}}" class="sidebar-link {{$selectedMenu=='knowledgebase' ? 'active' : ''}}">
-                            <i class="fa-solid fa-shield pe-2"></i>
+                        <i class="fa-solid fa-book pe-2"></i>
                             Knowledgebase
                         </a>
                     </li>
@@ -125,14 +125,14 @@
                 <li class="sidebar-item">
                     <a href="{{route('announcementcategory.index')}}" class="sidebar-link {{$selectedMenu=='AnnouncementCategory' ? 'active' : ''}}">
                         <i class="fa-solid fa-layer-group pe-2"></i>
-                        Defense leak Knowledgebase
+                        Defense leak Knowledgebase Category
                     </a>
                 </li>
 
                 <li class="sidebar-item">
                     <a href="{{route('knowledgebasecategories.index')}}" class="sidebar-link {{$selectedMenu=='knowledgebaseCategory' ? 'active' : ''}}">
                         <i class="fa-solid fa-layer-group pe-2"></i>
-                        Knowledgebase
+                        Knowledgebase Category
                     </a>
                 </li>
 
