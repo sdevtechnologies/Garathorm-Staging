@@ -5,12 +5,6 @@
         <td style="width: 10%">
             {{$knowledgebase->category->name}}
         </td>
-        <td style="width: 10%">
-            @foreach($knowledgebase->relatedCategories as $category)
-            {{ $category->name }}<br>
-            @endforeach
-            
-        </td>
         <td style="overflow: hidden;
         width: 100%;
         display: -webkit-box;
@@ -19,19 +13,23 @@
         <td style="width: 11%; color:#0c6fff;">Files</td>
 
         <td style="width: 15%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
+        <td style="width: 10%"> </td>
+
         <td style="width: 10%">
-        @foreach($knowledgebase->relatedCategories as $category)
-        <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdown{{ $knowledgebase->id }}" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ $category->status == 0 ? "Pending" : "Complete"}}<br>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
-            <li><a class="dropdown-item change-status" href="#" data-id="{{ $category->status }}" data-status="Pending">Pending</a></li>
-            <li><a class="dropdown-item change-status" href="#" data-id="{{ $category->status }}" data-status="Completed">Completed</a></li>
-        </ul>
-        </div>
-        @endforeach
+            @foreach($knowledgebase->relatedCategories as $category)
+            {{$category->name}}<br>
+            @endforeach
         </td>
+        <td class="dropdown">
+            <button class="btn btn-secondary" type="button" id="statusDropdown{{ $knowledgebase->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ $knowledgebase->status == 0 ? 'Pending' : 'Completed' }}
+            </button>
+            <ul class="dropdown-menu show-on-left" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
+                <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Pending">Pending</a></li>
+                <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Completed">Completed</a></li>
+            </ul>
+        </td>
+    
     </tr>
     <style> 
         .show-on-left {
@@ -71,7 +69,7 @@
                 event.preventDefault();
                 const status = item.getAttribute('data-status');
                 const button = item.closest('.dropdown').querySelector('button');
-                
+
                 // Change the text of the button to the selected status
                 button.textContent = status;
 
@@ -85,3 +83,4 @@
         });
     </script>
 @endforeach
+ 

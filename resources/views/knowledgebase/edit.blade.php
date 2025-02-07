@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     @endif
-                    <form action="{{ route('knowledgebase.update',$knowledgebase) }}" method="POST">
+                    <form action="{{ route('knowledgebases.update',$knowledgebase) }}" method="POST">
                         <label class="fst-italic text-danger">Note: All fields mark with (*) are required.</label>
                         @csrf
                         @method('PUT')
@@ -49,80 +49,97 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="relatedcategory" class="fw-bold">Related Category</label>
-                                <select id="relatedcategory" name="relatedcategory[]"  class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
+                                <label for="assignusers" class="fw-bold">Assigned Users</label>
+                                <select id="assignusers" name="assignusers[]"  class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
                                   
-                                    @foreach ($categories as $category)
-                                        <option value="{{$category->id}}" <?php if (old('relatedcategory')){
-                                            echo (old('relatedcategory')==$category->id ? "selected" : "");
+                                    @foreach ($users as $user)
+                                        <option value="{{$user->id}}" <?php if (old('assignusers')){
+                                            echo (old('assignusers')==$user->id ? "selected" : "");
                                         }else{
-                                            echo ($selectedCategories->contains('id',$category->id) ? "selected" : "");
+                                            echo ($selectedCategories->contains('id',$user->id) ? "selected" : "");
                                         } 
-                                        ?>>{{$category->name}}</option>
+                                        ?>>{{$user->name}}</option>
                                     @endforeach
                                     
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <label for="published" class="fw-bold"><span class="text-danger">*</span>Publish</label><br>
+                                <label for="mandatory" class="fw-bold"><span class="text-danger">*</span>Mandatory</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="1" name="published" id="publishedyes" <?php 
-                                        if (old('published') && old('published')==1) {
+                                    <input class="form-check-input" type="radio" value="1" name="mandatory" id="mandatoryyes" <?php 
+                                        if (old('mandatory') && old('mandatory')==1) {
                                             echo "checked";
-                                        }elseif (old('published') && old('published')==0){
+                                        }elseif (old('mandatory') && old('mandatory')==0){
                                             echo "";
-                                        }elseif ($knowledgebase->published==1) {
+                                        }elseif ($knowledgebase->mandatory==1) {
                                             echo "checked";
                                         }
                                         ?>
                                     >
-                                    <label class="form-check-label" for="publishedyes">
+                                    <label class="form-check-label" for="mandatoryyes">
                                     Yes
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="0" name="published" id="publishedno" <?php 
-                                    if (old('published') && old('published')==0) {
+                                    <input class="form-check-input" type="radio" value="0" name="mandatory" id="mandatoryno" <?php 
+                                    if (old('mandatory') && old('mandatory')==0) {
                                         echo "checked";
-                                    }elseif (old('published') && old('published')==1){
+                                    }elseif (old('mandatory') && old('mandatory')==1){
                                         echo "";
-                                    }elseif ($knowledgebase->published==0) {
+                                    }elseif ($knowledgebase->mandatory==0) {
                                         echo "checked";
                                     }
                                     ?> >
-                                    <label class="form-check-label" for="publishedno">
+                                    <label class="form-check-label" for="mandatoryno">
                                     No
                                     </label>
                                 </div>
                                 
                             </div>
-                            <div class="col-md-3">
-                                <label for="publisher" class="fw-bold"><span class="text-danger">*</span>Publisher</label>
-                                <select name="publisher" id="publisher" class="form-control" style="width: 100%" required>
-                                    
-                                    @foreach ($publishers as $publisher)
-                                        <option value="{{$publisher->id}}" <?php if (old('publisher')){
-                                            echo (old('publisher')==$publisher->id ? "selected" : "");
-                                        }else{
-                                            echo ($knowledgebase->publisher_id==$publisher->id ? "selected" : "");
-                                        } 
-                                        ?>>{{$publisher->name}}</option>
-                                    @endforeach
-                                    
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="date_knowledgebase" class="fw-bold"><span class="text-danger">*</span>Date of knowledgebase</label>
-                                <div class="input-group log-event"id="date_knowledgebase" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                                    <input id="date_knowledgebaseInput"  name="date_knowledgebase" type="text" class="form-control" data-td-target="#date_knowledgebase" value="{{old('date_knowledgebase') ? old('date_knowledgebase') : Carbon\Carbon::parse($knowledgebase->date_knowledgebase)->format('d/M/Y')}}"/>
-                                    <span class="input-group-text" data-td-target="#date_knowledgebase" data-td-toggle="datetimepicker" >
-                                    <i class="fas fa-calendar"></i>
-                                    </span>
+                            <div class="col-md-1">
+                                <label for="status" class="fw-bold"><span class="text-danger">*</span>Status</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="status" id="statusyes" <?php 
+                                        if (old('status') && old('status')==0) {
+                                            echo "checked";
+                                        }elseif (old('status') && old('status')==1){
+                                            echo "";
+                                        }elseif ($knowledgebase->status==0) {
+                                            echo "checked";
+                                        }
+                                        ?>
+                                    >
+                                    <label class="form-check-label" for="statusyes">
+                                    Pending
+                                    </label>
                                 </div>
-                                
-                                
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="status" id="statusno" <?php 
+                                    if (old('status') && old('status')==1) {
+                                        echo "checked";
+                                    }elseif (old('status') && old('status')==0){
+                                        echo "";
+                                    }elseif ($knowledgebase->status==1) {
+                                        echo "checked";
+                                    }
+                                    ?> >
+                                    <label class="form-check-label" for="statusno">
+                                    Completed
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 ml-3">
+                                <label for="file" class="fw-bold">
+                                    <span class="text-danger">*</span> Upload File
+                                </label>
+
+                                <input class="form-upload-file" type="file" name="fileName" id="file" 
+                                    accept=".jpg, .jpeg, .gif, .txt, .pdf">
+
+                                <small class="text-muted">Allowed formats: JPG, GIF, TXT, PDF</small>
                             </div>
                         </div>
+                        
                         <div class="mb-4">
                             <label for="url" class="fw-bold"><span class="text-danger">*</span>URL Link</label>
                             <div class="d-flex flex-row w-full">
@@ -177,7 +194,7 @@
             width: 'resolve',
             placeholder: "Select category"
         });
-        $("#relatedcategory").select2({
+        $("#assignusers").select2({
             tags: true,
             width: 'resolve',
             placeholder: "Select related categories"
@@ -189,4 +206,28 @@
         });
     });
     </script>
+ <style>
+    .form-upload-file {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #0d6efd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        outline: none;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-upload-file:focus {
+        border-color: #0b5ed7;
+    }
+
+    .text-muted {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
 </x-app-layout>

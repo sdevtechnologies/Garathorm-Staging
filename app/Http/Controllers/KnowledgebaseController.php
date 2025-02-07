@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Knowledgebase;
 use App\Models\KnowledgebaseCategory;
+use App\Models\UserAssignedForm;
 use App\Models\Publisher;
 use App\Models\User;
 use App\Notifications\KnowledgebaseNotification;
@@ -93,6 +94,7 @@ class KnowledgebaseController extends Controller
             'image' => 'nullable|file|image|max:2048',
             'url_link' => 'required',
             'description' =>'required',
+            'status' => 'required',
         ]);
 
         if(!is_numeric($validatedData['category'])){
@@ -105,8 +107,9 @@ class KnowledgebaseController extends Controller
         if(!empty($validatedData['assignusers'])){
             foreach($validatedData['assignusers'] as $key=>$category){
                 if(!is_numeric($category) && trim($category) != '' ){
-                    $law_category = new KnowledgebaseCategory();
+                    $law_category = new UserAssignedForm();
                     $law_category->name = $category;
+                    $law_category->status = 0;
                     $law_category->save();
                     $validatedData['assignusers'][$key]=$law_category->id;
                 }
@@ -123,6 +126,7 @@ class KnowledgebaseController extends Controller
         $knowledgebase->image =NULL;
         $knowledgebase->url_link = $validatedData['url_link'];
         $knowledgebase->description =$validatedData['description'];
+        $knowledgebase->status =$validatedData['status'];
 
         // Save the knowledgebase to the database
         $knowledgebase->save();
@@ -149,7 +153,8 @@ class KnowledgebaseController extends Controller
         //$publishers = Publisher::orderBy('name','asc')->get();
         $knowledgebase = Knowledgebase::findOrFail($id);
         $selectedCategories = $knowledgebase->relatedCategories;
-        return view('knowledgebases.edit', compact(['knowledgebase','categories','publishers','selectedCategories']));
+        $users = User::all();
+        return view('knowledgebase.edit', compact(['knowledgebase','categories','selectedCategories','users']));
     }
 
     public function update(Request $request, $id)
@@ -162,9 +167,10 @@ class KnowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'required|file|image|max:2048',
+            'image' => 'nullable|file|image|max:2048',
             'url_link' => 'required',
             'description' =>'required',
+            'status' => 'required'
         ]);
          // Create a new instance of the knowledgebase model
          $knowledgebase = Knowledgebase::findOrFail($id);
@@ -180,8 +186,9 @@ class KnowledgebaseController extends Controller
             if(!empty($validatedData['assignusers'])){
                 foreach($validatedData['assignusers'] as $key=>$category){
                     if(!is_numeric($category) && trim($category) != '' ){
-                        $law_category = new KnowledgebaseCategory();
+                        $law_category = new UserAssignedForm();
                         $law_category->name = $category;
+                        $law_category->status = $category;
                         $law_category->save();
                         $validatedData['assignusers'][$key]=$law_category->id;
                     }
@@ -193,10 +200,10 @@ class KnowledgebaseController extends Controller
              $knowledgebase->title = $validatedData['title'];
              $knowledgebase->category_id = $validatedData['category'];
              $knowledgebase->mandatory = $validatedData['mandatory'];
-             $knowledgebase->image =$validatedData['image'];
+             $knowledgebase->image =NULL;
              $knowledgebase->url_link = $validatedData['url_link'];
              $knowledgebase->description =$validatedData['description'];
-            $knowledgebase->date_knowledgebase = Carbon::createFromFormat('d/M/Y',$validatedData['date_knowledgebase'])->format('Y-m-d');
+             $knowledgebase->status =$validatedData['status'];
     
             // update the knowledgebase to the database
             $knowledgebase->save();

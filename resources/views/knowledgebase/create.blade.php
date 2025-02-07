@@ -73,6 +73,21 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-md-1">
+                                <label for="status" class="fw-bold"><span class="text-danger">*</span>Status</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="status" id="statusyes" checked>
+                                    <label class="form-check-label" for="statusyes">
+                                    Pending
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="status" id="statusno">
+                                    <label class="form-check-label" for="statusno">
+                                    Completed
+                                    </label>
+                                </div>
+                            </div>
                             <div class="col-md-3 ml-3">
                                 <label for="file" class="fw-bold">
                                     <span class="text-danger">*</span> Upload File

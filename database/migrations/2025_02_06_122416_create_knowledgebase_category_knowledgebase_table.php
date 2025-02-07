@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('knowledgebase_id')->constrained()->onDelete('cascade');
-            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

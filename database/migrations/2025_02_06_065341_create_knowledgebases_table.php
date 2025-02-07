@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('url_link');
             $table->boolean('mandatory');
             $table->longText('image')->nullable();
+            $table->boolean('status')->default('0');
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
 
