@@ -57,17 +57,33 @@
                     
                     <table class="w-full mt-4 table">
                         <thead>
+                        @if(Auth::check() && Auth::user()->hasRole('admin'))
                             <tr>   
                                 <th style="width: 2%"></th>
-                                <th style="width: 13%">@sortablelink('title')</th>
+                                <th style="width: 20%">@sortablelink('title')</th>
                                 <th style="width: 15%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 10%">Assigned Users</th>
-                                <th style="width: 25%">Description</th>
-                                <th style="width: 10%">File</th>
+                                <th style="width: 15%">Description</th>
+                                <th style="width: 7%">File</th>
                                 <th style="width: 15%">@sortablelink('mandatory','Mandatory')
-                                <th style="width: 18%">Status</th>
+                                <th style="width: 15%">Assigned Users</th>
+                                <th style="width: 13%">Status</th>
+                         
                                 <th style="width: 2%"></th>
                             </tr>
+                        @else
+                            <tr>   
+                                <th style="width: 2%"></th>
+                                <th style="width: 8%"> Name</th>
+                                <th style="width: 15%">@sortablelink('title')</th>
+                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
+                                <th style="width: 15%">Assigned Users</th>
+                                <th style="width: 17%">Description</th>
+                                <th style="width: 10%">File</th>
+                                <th style="width: 15%">@sortablelink('mandatory','Mandatory')
+                                <th style="width: 20%">Status</th>
+                                <th style="width: 2%"></th>
+                            </tr>
+                        @endif
                         </thead>
                         <tbody>
                             @include('knowledgebase.table_body')
