@@ -17,6 +17,8 @@ use App\Http\Controllers\VAPTController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController; 
 use App\Http\Controllers\AnnouncementCategoryController;
+use App\Http\Controllers\KnowledgebaseController; 
+use App\Http\Controllers\KnowledgebaseCategoryController;
 
 
 /*
@@ -133,6 +135,25 @@ Route::middleware('admin')->group(function(){
     Route::get('/announcementcategory/{incidentCategory}/edit', [AnnouncementCategoryController::class, 'edit'])->name('announcementcategory.edit');
     Route::put('/announcementcategory/{incidentCategory}', [AnnouncementCategoryController::class, 'update'])->name('announcementcategory.update');
     Route::delete('/announcementcategory/delete-selected', [AnnouncementCategoryController::class, 'deleteSelected'])->name('announcementcategory.deleteSelected');
+
+
+    Route::get('/knowledgebases', [KnowledgebaseController::class, 'index'])->name('knowledgebases.index');
+    Route::get('/knowledgebases/create', [KnowledgebaseController::class, 'create'])->name('knowledgebases.create');
+    Route::post('/knowledgebases', [KnowledgebaseController::class, 'store'])->name('knowledgebases.store');
+    Route::get('/knowledgebases/{knowledgebase}/edit', [KnowledgebaseController::class, 'edit'])->name('knowledgebases.edit');
+    Route::put('/knowledgebases/{knowledgebase}', [KnowledgebaseController::class, 'update'])->name('knowledgebases.update');
+    Route::delete('/knowledgebases/delete-selected', [KnowledgebaseController::class, 'deleteSelected'])->name('knowledgebases.deleteSelected');
+    Route::post('/knowledgebases/copy-selected', [KnowledgebaseController::class, 'copySelected'])->name('knowledgebases.copySelected');
+    
+    // Knowledgebase Category routes
+    Route::get('/knowledgebasecategories', [KnowledgebaseCategoryController::class, 'index'])->name('knowledgebasecategories.index');
+    Route::get('/knowledgebasecategories/create', [KnowledgebaseCategoryController::class, 'create'])->name('knowledgebasecategories.create');
+    Route::post('/knowledgebasecategories', [KnowledgebaseCategoryController::class, 'store'])->name('knowledgebasecategories.store');
+    Route::get('/knowledgebasecategories/{knowledgebasecategory}/edit', [KnowledgebaseCategoryController::class, 'edit'])->name('knowledgebasecategories.edit');
+    Route::put('/knowledgebasecategories/{knowledgebasecategory}', [KnowledgebaseCategoryController::class, 'update'])->name('knowledgebasecategories.update');
+    Route::post('/knowledgebases/copy-selected', [AnnouncementController::class, 'copySelected'])->name('knowledgebases.copySelected');
+    Route::delete('/knowledgebasecategories/delete-selected', [KnowledgebaseCategoryController::class, 'deleteSelected'])->name('knowledgebasecategories.deleteSelected');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -183,6 +204,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/announcement/delete-selected', [AnnouncementController::class, 'deleteSelected'])->name('announcement.deleteSelected');
     Route::post('/announcement/copy-selected', [AnnouncementController::class, 'copySelected'])->name('announcement.copySelected');
 
+
+    Route::get('/knowledgebases', [KnowledgebaseController::class, 'index'])->name('knowledgebases.index');
+    Route::get('/whatsnew/knowledgebases', [KnowledgebaseController::class, 'whatsnewindex'])->name('knowledgebases.whatsnewindex');
+    Route::get('/knowledgebases/create', [KnowledgebaseController::class, 'create'])->name('knowledgebases.create');
+    Route::post('/knowledgebases', [KnowledgebaseController::class, 'store'])->name('knowledgebases.store');
+    Route::get('/knowledgebases/{knowledgebase}/edit', [KnowledgebaseController::class, 'edit'])->name('knowledgebases.edit');
+    Route::put('/knowledgebases/{knowledgebase}', [KnowledgebaseController::class, 'update'])->name('knowledgebases.update');
+    Route::delete('/knowledgebases/delete-selected', [KnowledgebaseController::class, 'deleteSelected'])->name('knowledgebases.deleteSelected');
+    Route::post('/knowledgebases/copy-selected', [KnowledgebaseController::class, 'copySelected'])->name('knowledgebases.copySelected');
     
 });
 

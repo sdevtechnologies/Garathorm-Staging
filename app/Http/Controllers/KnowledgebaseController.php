@@ -1,0 +1,253 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\knowledgebase;
+use App\Models\knowledgebaseCategory;
+use App\Models\Publisher;
+use App\Models\User;
+use App\Notifications\knowledgebaseNotification;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DateTime;
+use Illuminate\Support\Facades\View;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+
+class knowledgebaseController extends Controller
+{
+    public function index(Request $request)
+    {
+        $query = knowledgebase::query();
+        $search ="";
+        // Searching
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            if(strtolower($request->input('sort'))!=='category.name'){
+                $query->join('knowledgebase_categories','knowledgebases.category_id','=','knowledgebase_categories.id');
+            }
+                $query
+                ->where('title', 'like', "%$search%")
+                ->orWhere('description', 'like', "%$search%")
+                ->orWhere('knowledgebase_categories.name', 'like', "%$search%");
+
+            $query->select('knowledgebases.*');
+
+        }
+
+
+        $knowledgebases = $query->paginate(15);
+        return view('knowledgebase.index', compact('knowledgebases','search'));
+    }
+
+    public function whatsnewindex(Request $request)
+    {
+        $query = knowledgebase::query();
+        $search ="";
+        $twoWeeksAgoDate = Carbon::today()->subDays(14);
+        // Searching
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->join('knowledgebase_categories','knowledgebase.category_id','=','knowledgebase_categories.id')
+            ->join('publishers','knowledgebase.publisher_id','=','publishers.id')
+                ->where('knowledgebase.created_at','>=',$twoWeeksAgoDate)
+                ->where(function($subquery) use ($search){    
+                    $subquery->where('title', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%")
+                    ->orWhere('knowledgebase_categories.name', 'like', "%$search%")
+                    ->orWhere('publishers.name', 'like', "%$search%");
+                });
+            
+            if (DateTime::createFromFormat('d/M/Y',$search) !== false){
+                $searchDate = Carbon::createFromFormat('d/M/Y',$search)->format('Y-m-d');
+                $query->orWhere('date_knowledgebase','like',"%$searchDate%");
+            }
+            $query->select('knowledgebase.*');
+
+        }else{
+            $query->where('created_at','>=',$twoWeeksAgoDate);
+        }
+
+
+        $knowledgebases = $query->sortable(['created_at'=>'desc'])->paginate(15);
+        return view('knowledgebase.index', compact('knowledgebases','search'));
+    }
+
+    public function create(){
+        $categories = knowledgebaseCategory::orderBy('name','asc')->get();
+        $publishers = Publisher::orderBy('name','asc')->get();
+        $users = User::all();
+
+        return view('knowledgebase.create',compact(['categories','publishers','users']));
+    }
+
+    public function store(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required',
+            'assignusers' => '',
+            'mandatory' => 'required',
+            'image' => 'nullable|file|image|max:2048',
+            'url_link' => 'required',
+            'description' =>'required',
+        ]);
+
+        if(!is_numeric($validatedData['category'])){
+            $law_category = new knowledgebaseCategory();
+            $law_category->name = $validatedData['category'];
+            $law_category->save();
+            $validatedData['category']=$law_category->id;
+        }
+        
+        if(!empty($validatedData['assignusers'])){
+            foreach($validatedData['assignusers'] as $key=>$category){
+                if(!is_numeric($category) && trim($category) != '' ){
+                    $law_category = new knowledgebaseCategory();
+                    $law_category->name = $category;
+                    $law_category->save();
+                    $validatedData['assignusers'][$key]=$law_category->id;
+                }
+            }
+        }
+
+        // Create a new instance of the knowledgebase model
+        $knowledgebase = new knowledgebase();
+
+        // Set the attributes on the model instance
+        $knowledgebase->title = $validatedData['title'];
+        $knowledgebase->category_id = $validatedData['category'];
+        $knowledgebase->mandatory = $validatedData['mandatory'];
+        $knowledgebase->image =NULL;
+        $knowledgebase->url_link = $validatedData['url_link'];
+        $knowledgebase->description =$validatedData['description'];
+
+        // Save the knowledgebase to the database
+        $knowledgebase->save();
+         if(!empty($validatedData['assignusers'])){
+             $knowledgebase->relatedCategories()->attach($validatedData['assignusers']);
+         }
+        switch($request->input('action')){
+            case "save_notify_all":
+                $users = User::all();
+                Notification::send($users,new knowledgebaseNotification($knowledgebase,'save_notify_all'));
+                break;
+            case "save_notify_admin":
+                $users = User::role('admin')->get();
+                Notification::send($users,new knowledgebaseNotification($knowledgebase,'save_notify_admin'));
+                break;
+        }
+        // Redirect to the index page with a success message
+        return redirect()->route('knowledgebases.index')->with('success', 'knowledgebase added successfully.');
+    }
+
+    public function edit($id)
+    {
+        $categories = knowledgebaseCategory::orderBy('name','asc')->get();
+        //$publishers = Publisher::orderBy('name','asc')->get();
+        $knowledgebase = knowledgebase::findOrFail($id);
+        $selectedCategories = $knowledgebase->relatedCategories;
+        return view('knowledgebases.edit', compact(['knowledgebase','categories','publishers','selectedCategories']));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Code to update the knowledgebase
+
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'category' => 'required',
+            'assignusers' => '',
+            'mandatory' => 'required',
+            'image' => 'required|file|image|max:2048',
+            'url_link' => 'required',
+            'description' =>'required',
+        ]);
+         // Create a new instance of the knowledgebase model
+         $knowledgebase = knowledgebase::findOrFail($id);
+         if ($knowledgebase){
+
+            if(!is_numeric($validatedData['category'])){
+                $law_category = new knowledgebaseCategory();
+                $law_category->name = $validatedData['category'];
+                $law_category->save();
+                $validatedData['category']=$law_category->id;
+            }
+            
+            if(!empty($validatedData['assignusers'])){
+                foreach($validatedData['assignusers'] as $key=>$category){
+                    if(!is_numeric($category) && trim($category) != '' ){
+                        $law_category = new knowledgebaseCategory();
+                        $law_category->name = $category;
+                        $law_category->save();
+                        $validatedData['assignusers'][$key]=$law_category->id;
+                    }
+                }
+            }
+    
+
+             // Set the attributes on the model instance
+             $knowledgebase->title = $validatedData['title'];
+             $knowledgebase->category_id = $validatedData['category'];
+             $knowledgebase->mandatory = $validatedData['mandatory'];
+             $knowledgebase->image =$validatedData['image'];
+             $knowledgebase->url_link = $validatedData['url_link'];
+             $knowledgebase->description =$validatedData['description'];
+            $knowledgebase->date_knowledgebase = Carbon::createFromFormat('d/M/Y',$validatedData['date_knowledgebase'])->format('Y-m-d');
+    
+            // update the knowledgebase to the database
+            $knowledgebase->save();
+            
+            $knowledgebase->relatedCategories()->detach();   
+            if(!empty($validatedData['assignusers'])){
+                $knowledgebase->relatedCategories()->attach($validatedData['assignusers']);
+            }
+            return redirect()->route('knowledgebases.index')->with('success', 'knowledgebase updated successfully.');
+        }else{
+            return redirect()->route('knowledgebases.index')->with('error', 'knowledgebase maybe updated or deleted, please try again.');
+        }
+
+        
+    }
+
+
+
+    public function deleteSelected(Request $request)
+    {
+        try {
+            $selectedIds = $request->input('selectedIds');
+            if (!empty($selectedIds)) {
+                knowledgebase::whereIn('id', explode(',', $selectedIds))->delete();
+                return redirect()->route('knowledgebases.index')->with('success', 'Selected knowledgebases deleted successfully.');
+            } else {
+                return redirect()->route('knowledgebases.index')->with('error', 'No knowledgebase selected for deletion.');
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+    }
+
+    public function copySelected(Request $request)
+    {
+        try {
+            $selectedIds = $request->input('selectedCopyIds');
+            if (!empty($selectedIds)) {
+                $knowledgebases = knowledgebase::whereIn('id', explode(',', $selectedIds))->get();
+                foreach($knowledgebases as $key => $knowledgebase){
+                    $newknowledgebase = $knowledgebase->replicate();
+                    $newknowledgebase->created_at = Carbon::now();
+                    $newknowledgebase->save();
+                }
+                return redirect()->route('knowledgebases.index')->with('success', 'Selected knowledgebases copied successfully.');
+            } else {
+                return redirect()->route('knowledgebases.index')->with('error', 'No knowledgebase selected for copy.');
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+    }
+
+}
