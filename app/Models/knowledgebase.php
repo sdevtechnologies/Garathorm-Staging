@@ -37,7 +37,7 @@ class Knowledgebase extends Model
         return $this->belongsTo(KnowledgebaseCategory::class,'category_id')->withTrashed();
     }
     public function relatedCategories(){
-        return $this->belongsToMany(KnowledgebaseCategory::class,'knowledgebase_category_knowledgebase')->withTrashed();
+        return $this->belongsToMany(User::class,'knowledgebase_category_knowledgebase')->withTrashed();
     }
     public function publisher(){
         return $this->belongsTo(Publisher::class,'publisher_id')->withTrashed();

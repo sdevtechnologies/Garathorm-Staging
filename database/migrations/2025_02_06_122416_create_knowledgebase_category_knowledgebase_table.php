@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('knowledgebase_category_knowledgebase', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('knowledgebase_category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('knowledgebase_id')->constrained()->onDelete('cascade');
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

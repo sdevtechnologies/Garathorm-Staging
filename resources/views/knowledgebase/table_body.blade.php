@@ -20,4 +20,5 @@
         <td style="width: 15%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
         <td style="width: 10%"></td>
     </tr>
+    <p>{{$knowledgebase}}</p>
 @endforeach
