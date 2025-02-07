@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
-class knowledgebase extends Model
+class Knowledgebase extends Model
 {
     use HasFactory, SoftDeletes;
     use Sortable;
@@ -34,10 +34,10 @@ class knowledgebase extends Model
     'created_at'];
 
     public function category(){
-        return $this->belongsTo(knowledgebaseCategory::class,'category_id')->withTrashed();
+        return $this->belongsTo(KnowledgebaseCategory::class,'category_id')->withTrashed();
     }
     public function relatedCategories(){
-        return $this->belongsToMany(knowledgebaseCategory::class,'knowledgebase_category_knowledgebase')->withTrashed();
+        return $this->belongsToMany(KnowledgebaseCategory::class,'knowledgebase_category_knowledgebase')->withTrashed();
     }
     public function publisher(){
         return $this->belongsTo(Publisher::class,'publisher_id')->withTrashed();

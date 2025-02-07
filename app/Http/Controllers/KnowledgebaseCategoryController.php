@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\knowledgebaseCategory;
+use App\Models\KnowledgebaseCategory;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class knowledgebaseCategoryController extends Controller
+class KnowledgebaseCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = knowledgebaseCategory::query();
+        $query = KnowledgebaseCategory::query();
         $search = "";
 
         // Searching
@@ -42,11 +42,11 @@ class knowledgebaseCategoryController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:' . knowledgebaseCategory::class,
+            'name' => 'required|string|unique:' . KnowledgebaseCategory::class,
         ]);
 
         // Create a new instance of the knowledgebaseCategory model
-        $category = new knowledgebaseCategory();
+        $category = new KnowledgebaseCategory();
 
         // Set the attributes on the model instance
         $category->name = $validatedData['name'];
@@ -61,7 +61,7 @@ class knowledgebaseCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(knowledgebaseCategory $knowledgebaseCategory)
+    public function edit(KnowledgebaseCategory $knowledgebaseCategory)
     {
         $category = $knowledgebaseCategory;
         return view('knowledgebasecategories.edit', compact('category'));
@@ -70,7 +70,7 @@ class knowledgebaseCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, knowledgebaseCategory $knowledgebaseCategory)
+    public function update(Request $request, KnowledgebaseCategory $knowledgebaseCategory)
     {
         $request->validate([
             'name' => ['required', 'string', 'unique:knowledgebase_categories,name,' . $knowledgebaseCategory->id],
@@ -86,7 +86,7 @@ class knowledgebaseCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(knowledgebaseCategory $knowledgebaseCategory)
+    public function destroy(KnowledgebaseCategory $knowledgebaseCategory)
     {
         // Delete the category
         $knowledgebaseCategory->delete();
@@ -101,7 +101,7 @@ class knowledgebaseCategoryController extends Controller
         try {
             $selectedIds = $request->input('selectedIds');
             if (!empty($selectedIds)) {
-                knowledgebaseCategory::whereIn('id', explode(',', $selectedIds))->delete();
+                KnowledgebaseCategory::whereIn('id', explode(',', $selectedIds))->delete();
                 return redirect()->route('knowledgebasecategories.index')->with('success', 'Selected categories deleted successfully.');
             } else {
                 return redirect()->route('knowledgebasecategories.index')->with('error', 'No category selected for deletion.');

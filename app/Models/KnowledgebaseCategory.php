@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
-class knowledgebaseCategory extends Model
+class KnowledgebaseCategory extends Model
 {
     use HasFactory, SoftDeletes, Sortable;
 
