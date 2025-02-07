@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Knowledgebase;
-use App\Models\knowledgebaseCategory;
+use App\Models\KnowledgebaseCategory;
 use App\Models\Publisher;
 use App\Models\User;
 use App\Notifications\KnowledgebaseNotification;
