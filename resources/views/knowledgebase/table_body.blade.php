@@ -14,7 +14,19 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;">{{ $knowledgebase->description }}</td>
         <td style="widthL 20%"></td>
-        <td style="width: 10%; color:#0c6fff;">Files</td>
+        <td>
+            @php         
+            $fullPath = $knowledgebase->image; 
+            $parts = explode("knowledgebase/", $fullPath);
+            $filename = end($parts);
+            @endphp
+
+            @if($filename)
+                <a href="{{$knowledgebase->image}}" style="width: 10%; color:#0c6fff;">{{$filename}}</a>
+            @else
+                No File
+            @endif
+        </td>
 
         <td style="width: 13%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
 

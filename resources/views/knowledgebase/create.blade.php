@@ -24,7 +24,7 @@
                             </div>
                         </div>
                     @endif
-                    <form action="{{ route('knowledgebases.store') }}" method="POST">
+                    <form action="{{ route('knowledgebases.store') }}" method="POST" enctype="multipart/form-data">
                         <label class="fst-italic text-danger">Note: All fields mark with (*) are required.</label>
                         @csrf
                         <div class="mb-4">
@@ -93,7 +93,7 @@
                                     <span class="text-danger">*</span> Upload File
                                 </label>
 
-                                <input class="form-upload-file" type="file" name="fileName" id="file" 
+                                <input class="form-upload-file" type="file" name="image" id="image" 
                                     accept=".jpg, .jpeg, .gif, .txt, .pdf">
 
                                 <small class="text-muted">Allowed formats: JPG, GIF, TXT, PDF</small>

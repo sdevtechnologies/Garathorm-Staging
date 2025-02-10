@@ -14,11 +14,12 @@ class Knowledgebase extends Model
     protected $connection = 'mysql2';
     protected $fillable = [
         'title',
-        'published',
-        'publisher_id',
+        'category',
+        'mandatory',
+        'status,',
+        'image',
         'description',
         'url_link',
-        'date_knowledgebase',
     ];
 
     protected $dates = [
@@ -26,11 +27,8 @@ class Knowledgebase extends Model
     ];
 
     public $sortable = ['title',
-    'published',
     'category.name',
-    'publisher.name',
     'description',
-    'date_knowledgebase',
     'created_at'];
 
     public function category(){

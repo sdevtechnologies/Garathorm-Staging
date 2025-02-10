@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\View;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\File;
 
 class KnowledgebaseController extends Controller
 {
@@ -91,7 +92,7 @@ class KnowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable|mimes:jpg,jpeg,gif,txt,pdf|max:2048',
             'url_link' => 'required',
             'description' =>'required',
             'status' => 'required',
@@ -116,6 +117,19 @@ class KnowledgebaseController extends Controller
             }
         }
 
+        if(!empty($validatedData['image'])){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            
+            $filename = time().'.'.$extension;
+            $path = 'uploads/knowledgebase/';
+            $file->move($path, $filename);
+            $validatedData['image'] = $path.$filename;
+        }
+        else{
+            $validatedData['image'] = NULL;
+        }
+
         // Create a new instance of the knowledgebase model
         $knowledgebase = new Knowledgebase();
 
@@ -123,7 +137,7 @@ class KnowledgebaseController extends Controller
         $knowledgebase->title = $validatedData['title'];
         $knowledgebase->category_id = $validatedData['category'];
         $knowledgebase->mandatory = $validatedData['mandatory'];
-        $knowledgebase->image =NULL;
+        $knowledgebase->image = $validatedData['image'];
         $knowledgebase->url_link = $validatedData['url_link'];
         $knowledgebase->description =$validatedData['description'];
         $knowledgebase->status =$validatedData['status'];
@@ -167,7 +181,7 @@ class KnowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'nullable|file|image|max:2048',
+            'image' => 'nullable|mimes:jpg,jpeg,gif,txt,pdf|max:20000',
             'url_link' => 'required',
             'description' =>'required',
             'status' => 'required'
@@ -194,13 +208,31 @@ class KnowledgebaseController extends Controller
                     }
                 }
             }
+
+            if(!empty($validatedData['image'])){
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                
+                $filename = time().'.'.$extension;
+                $path = 'uploads/knowledgebase/';
+                $file->move($path, $filename);
+
+                if(File::exists($knowledgebase->image)){
+                    File::delete($knowledgebase->image);
+                }
+
+                $validatedData['image'] = $path.$filename;
+            }
+            else{
+                $validatedData['image'] = NULL;
+            }
     
 
              // Set the attributes on the model instance
              $knowledgebase->title = $validatedData['title'];
              $knowledgebase->category_id = $validatedData['category'];
              $knowledgebase->mandatory = $validatedData['mandatory'];
-             $knowledgebase->image =NULL;
+             $knowledgebase->image = $validatedData['image'];
              $knowledgebase->url_link = $validatedData['url_link'];
              $knowledgebase->description =$validatedData['description'];
              $knowledgebase->status =$validatedData['status'];
