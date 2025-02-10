@@ -39,10 +39,10 @@
             <button class="btn btn-secondary" type="button" id="statusDropdown{{ $knowledgebase->id }}" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $knowledgebase->status == 0 ? 'Pending' : 'Completed' }}
             </button>
-            <ul class="dropdown-menu show-on-left" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
+            <!-- <ul class="dropdown-menu show-on-left" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
                 <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Pending">Pending</a></li>
                 <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Completed">Completed</a></li>
-            </ul>
+            </ul> -->
         </td>
     
     </tr>
@@ -71,29 +71,18 @@
         <td style="width: 5%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
         <td style="width: 4%"> </td>
         <td class="dropdown" style="width: 13%">
-            <button class="btn btn-secondary" type="button" id="statusDropdown{{ $knowledgebase->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary" type="button" id="statusDropdown{{ $knowledgebase->id }}" aria-expanded="false">
                 {{ $knowledgebase->status ?? 'Pending' }}
             </button>
-            <ul class="dropdown-menu show-on-left" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
+            <!-- <ul class="dropdown-menu show-on-left" aria-labelledby="statusDropdown{{ $knowledgebase->id }}">
                 <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Pending">Pending</a></li>
                 <li><a class="dropdown-item change-status" href="#" data-id="{{ $knowledgebase->id }}" data-status="Completed">Completed</a></li>
-            </ul>
+            </ul> -->
         </td>
     </tr>
     @endif
-    <style> 
-        .show-on-left {
-            position: absolute;
-            top: 0;
-            right: 100%; /* Moves the dropdown to the left */
-            display: none; /* Hidden by default */
-            white-space: nowrap; /* Keeps items in a single row */
-            background: white;
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
+    <!--
+    <style>
         .dropdown:hover .show-on-left {
             display: flex; /* Show when hovering/clicking */
             gap: 10px; /* Adds space between items */
@@ -132,5 +121,6 @@
             });
         });
     </script>
+    -->
 @endforeach
  
