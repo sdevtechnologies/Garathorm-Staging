@@ -2,7 +2,7 @@
     <x-slot name="selectedMenu">
         {{"Incident"}}
     </x-slot>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/announcement/edit-create.css')}}"/>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
@@ -40,7 +40,7 @@
                         <div class="row mb-4">
                             <div class="col-md-3">
                                 <label for="category" class="fw-bold"><span class="text-danger">*</span>Category</label>
-                                <select name="category" id="category" class="form-control" style="width: 100%" required>
+                                <select name="category" id="category" class="form-control"  required>
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}" {{ old('category')==$category->id ? "selected" : "" }}>{{$category->name}}</option>    
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="relatedcategory" class="fw-bold">Related Category</label><br>
-                                <select name="relatedcategory[]" id="relatedcategory" class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
+                                <select name="relatedcategory[]" id="relatedcategory" class="js-example-basic-multiple js-states form-control" multiple="multiple">
                             
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}" {{ old('relatedcategory')==$category->id ? "selected" : "" }}>{{$category->name}}</option>    
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="publisher" class="fw-bold"><span class="text-danger">*</span>Publisher</label>
-                                <select name="publisher" id="publisher" class="form-control" style="width: 100%" required>
+                                <select name="publisher" id="publisher" class="form-control" required>
                                     <option value="">Select Publisher</option>
                                     @foreach ($publishers as $publisher)
                                         <option value="{{$publisher->id}}" {{ old('publisher')==$publisher->id ? "selected" : "" }}>{{$publisher->name}}</option>    
@@ -158,28 +158,4 @@
     <script src="{{URL::to('custom/js/create_edit.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-    $(document).ready(function () {
-        /*$('#date_incident').datetimepicker({
-            format: 'DD/MMM/YYYY',
-            locale: 'en'
-        });*/
-        $("#category").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select category"
-        });
-        $("#relatedcategory").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select related categories"
-        });
-        $("#publisher").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select publisher"
-        });
-    });
-    
-    </script>
 </x-app-layout>

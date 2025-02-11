@@ -72,12 +72,28 @@ $(document).ready(function(){
           console.error('Failed to read clipboard contents: ', err);
         
         });
-
-        
-        
     })
-
-
-
-
 });
+
+
+    $(document).ready(function () {
+        /*$('#date_announcement').datetimepicker({
+            format: 'DD/MMM/YYYY',
+            locale: 'en'
+        });*/
+        $("#category").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select category"
+        });
+        $("#relatedcategory").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select related categories"
+        });
+        $("#publisher").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select publisher"
+        });
+    });

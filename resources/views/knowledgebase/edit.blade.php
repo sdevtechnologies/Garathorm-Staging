@@ -2,7 +2,7 @@
     <x-slot name="selectedMenu">
         {{"knowledgebase"}}
     </x-slot>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/announcement/edit-create.css')}}"/>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
@@ -206,28 +206,4 @@
         });
     });
     </script>
- <style>
-    .form-upload-file {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 2px solid #0d6efd;
-        border-radius: 5px;
-        background-color: #f8f9fa;
-        outline: none;
-        transition: border-color 0.3s ease-in-out;
-    }
-
-    .form-upload-file:focus {
-        border-color: #0b5ed7;
-    }
-
-    .text-muted {
-        font-size: 12px;
-        color: #6c757d;
-        margin-top: 5px;
-        display: block;
-    }
-</style>
 </x-app-layout>

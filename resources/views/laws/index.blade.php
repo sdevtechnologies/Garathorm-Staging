@@ -3,7 +3,7 @@
     <x-slot name="selectedMenu">
         {{"Laws"}}
     </x-slot>
-    
+    <link rel="stylesheet" href="{{URL::to('custom/css/table-header.css')}}"/>
     <div class="py-12">
         
         
@@ -61,17 +61,19 @@
                     <table class="w-full mt-4 table">
                         <thead>
                             <tr>
-                                <th ></th>
-                                <th style="width: 20%">@sortablelink('title')</th>
-                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 10%">Related Category</th>
-                                <th style="width: 25%">Description
+                            <th ></th>
+                                <th class="title">@sortablelink('title')</th>
+                                <th class="category">@sortablelink('category.name','Category')</th>
+                                <th class="related">Related Category</th>
+                                <th class="description">Description
                                 </th>
-                                <th style="width: 5%">@sortablelink('published','Publish')
+                                
+                                <th class="publisher">@sortablelink('published','Publish')
                                 </th>
-                                <th style="width: 15%">@sortablelink('publisher.name','Publisher')</th>
-                                <th style="width: 15%">@sortablelink('date_published','Date Published')</th>
-                            </tr>
+                                <th class="publisher-name">@sortablelink('publisher.name','Publisher')</th>
+                                <th class="date">@sortablelink('date_incident','Date of Incident')</th>
+                                
+                                </tr>
                         </thead>
                         <tbody>
                             @include('laws.table_body')

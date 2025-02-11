@@ -81,46 +81,5 @@
         </td>
     </tr>
     @endif
-    <!--
-    <style>
-        .dropdown:hover .show-on-left {
-            display: flex; /* Show when hovering/clicking */
-            gap: 10px; /* Adds space between items */
-        }
-
-        /* Disable button when dropdown is visible */
-        .dropdown:hover button {
-            pointer-events: none; /* Disable clicks */
-        }
-
-        /* Add color styles for Pending and Completed */
-        .show-on-left .dropdown-item[data-status="Pending"] {
-            color: #0d6fff; /* Blue */
-        }
-
-        .show-on-left .dropdown-item[data-status="Completed"] {
-            color: #303030; /* Dark Gray */
-        }
-    </style>
-    <script> 
-        document.querySelectorAll('.change-status').forEach(item => {
-            item.addEventListener('click', function(event) {
-                event.preventDefault();
-                const status = item.getAttribute('data-status');
-                const button = item.closest('.dropdown').querySelector('button');
-
-                // Change the text of the button to the selected status
-                button.textContent = status;
-
-                // Change the color based on the selected status
-                if (status === 'Pending') {
-                    button.style.backgroundColor = '#0d6fff'; // Blue
-                } else if (status === 'Completed') {
-                    button.style.backgroundColor = '#60ad3e'; // Dark Gray
-                }
-            });
-        });
-    </script>
-    -->
 @endforeach
  

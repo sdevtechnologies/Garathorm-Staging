@@ -1,26 +1,20 @@
 @foreach ($laws as $law)
     <tr>
-        <td style="width: 2%"><input type="checkbox" name="selectedIds[]"  data-url="{{route('laws.edit',$law)}}" value="{{ $law->id }}"></td>
-        <td style="width: 18%" class="text-primary" ><a target="_blank" href={{$law->url_link}}>{{ $law->title }}</a></td>
-        <td style="width: 10%">
+    <td ><input type="checkbox" name="selectedIds[]"  data-url="{{route('incident.edit',$law)}}" value="{{ $law->id }}"></td>
+        <td  class="text-primary title"><a target="_blank" href={{$law->url_link}}>{{ $law->title }}</a></td>
+        <td class="category">
             {{$law->category->name}}
         </td>
-        <td style="width: 10%">
-            
+        <td class="related">
             @foreach($law->relatedCategories as $category)
-                {{ $category->name }}
-            <br>
+            {{ $category->name }}<br>
             @endforeach
             
         </td>
-        <td style="overflow: hidden;
-    width: 100%;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;">{{ $law->description}}</td>
-        <td style="width: 5%">{{ $law->published==1 ? 'Yes' : 'No' }}</td>
-        <td style="width: 15%">{{ $law->publisher->name }}</td>
-        <td style="width: 15%">{{ Carbon\Carbon::parse($law->date_published)->format('d/M/Y') }}</td>
-    </tr>
+        <td class="description">{{ $law->description }}</td>
+        <td class="publisher">{{ $law->published==1 ? 'Yes' : 'No' }}</td>
+        <td class="publisher-name">{{ $law->publisher->name }}</td>
+        <td class="date">{{ Carbon\Carbon::parse($law->date_incident)->format('d/M/Y') }}</td>
+</tr>
 @endforeach
 
