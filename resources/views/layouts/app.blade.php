@@ -2,10 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta http-equiv="Content-Security-Policy" content="default-src 'none' ;
+        img-src 'self'      data:;
+        font-src 'self'     https://fonts.bunny.net;
         style-src 'self'    https://fonts.bunny.net
                             https://cdn.jsdelivr.net
                             https://cdnjs.cloudflare.com;
-        script-src 'self';">
+        script-src 'self'   https://code.jquery.com
+                            https://cdn.jsdelivr.net;">
 
 
         <meta charset="utf-8">

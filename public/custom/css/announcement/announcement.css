@@ -39,6 +39,7 @@
 .announcement-table {
     width: 100%;
     border-collapse: collapse;
+
 }
 
 /* Center Align Checkbox */
@@ -59,12 +60,12 @@
 }
 
 .announcement-title {
-    width: 20%;
+    width: 21%;
 }
 
 /* Category Columns */
 .announcement-category {
-    width: 10%;
+    width: 12%;
 }
 .announcement-related {
     width: 15%;
@@ -73,6 +74,7 @@
 
 /* Truncate Long Descriptions */
 .announcement-description {
+    width: 100%;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -81,20 +83,19 @@
     white-space: normal;
 }
 
-/* Published Status Center */
-.announcement-published {
-    text-align: center;
-    width: 20%;
-}
-
 /* Publisher Column */
 .announcement-publisher {
+    width: 25%;
+    text-align: center;
+}
+
+.announcement-publisher-name {
     width: 15%;
 }
 
 /* Date Column */
 .announcement-date {
-    width: 10%;
+    width: 15%;
     font-style: italic;
     color: #555;
 }

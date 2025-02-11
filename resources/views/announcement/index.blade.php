@@ -1,12 +1,10 @@
 <x-app-layout>
-
     <x-slot name="selectedMenu">
         {{"Announcement"}}
     </x-slot>
     
-    <link rel="stylesheet" href="{{URL::to('custom/css/announcement.css')}}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <div class="py-12">
+    <link rel="stylesheet" href="{{URL::to('custom/css/announcement/announcement.css')}}"/>
+ <div class="py-12">
         
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
@@ -79,7 +77,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{URL::to('custom/js/laws_frameworks.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
