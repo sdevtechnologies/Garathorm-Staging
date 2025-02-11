@@ -1,0 +1,100 @@
+
+
+.col-title {
+    width: 20%;
+}
+
+.col-category {
+    width: 10%;
+}
+
+.col-related-category {
+    width: 15%;
+}
+
+.col-description {
+    width: 15%;
+}
+
+.col-publish {
+    width: 10%;
+}
+
+.col-publisher {
+    width: 15%;
+}
+
+.col-date-announcement {
+    width: 10%;
+}
+
+
+
+
+
+
+
+
+/* Table Styling */
+.announcement-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Center Align Checkbox */
+.announcement-checkbox {
+    text-align: center;
+    width: 2%;
+}
+
+/* Title Column */
+.announcement-title a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.announcement-title a:hover {
+    text-decoration: underline;
+}
+
+.announcement-title {
+    width: 20%;
+}
+
+/* Category Columns */
+.announcement-category {
+    width: 10%;
+}
+.announcement-related {
+    width: 15%;
+    white-space: nowrap;
+}
+
+/* Truncate Long Descriptions */
+.announcement-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    max-height: 4.5em;
+    white-space: normal;
+}
+
+/* Published Status Center */
+.announcement-published {
+    text-align: center;
+    width: 20%;
+}
+
+/* Publisher Column */
+.announcement-publisher {
+    width: 15%;
+}
+
+/* Date Column */
+.announcement-date {
+    width: 10%;
+    font-style: italic;
+    color: #555;
+}

@@ -4,8 +4,9 @@
         {{"Announcement"}}
     </x-slot>
     
+    <link rel="stylesheet" href="{{URL::to('custom/css/announcement.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <div class="py-12">
-        
         
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
@@ -53,32 +54,27 @@
                             </div>
                         </form>
                     </div>
-                    
-                    
                     <table class="w-full mt-4 table">
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 20%">@sortablelink('title')</th>
-                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 10%">Related Category</th>
-                                <th style="width: 25%">Description
+                                <th class="col-title">@sortablelink('title')</th>
+                                <th class="col-category">@sortablelink('category.name','Category')</th>
+                                <th class="col-related-category">Related Category</th>
+                                <th class="col-description">Description
                                 </th>
                                 
-                                <th style="width: 5%">@sortablelink('published','Publish')
+                                <th class=".col-publish">@sortablelink('published','Publish')
                                 </th>
-                                <th style="width: 15%">@sortablelink('publisher.name','Publisher')</th>
-                                <th style="width: 15%">@sortablelink('date_announcement','Date of announcement')</th>
+                                <th class="col-publisher">@sortablelink('publisher.name','Publisher')</th>
+                                <th class="col-date-announcement">@sortablelink('date_announcement','Date of announcement')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @include('announcement.table_body')
                         </tbody>
                     </table>
-                    
                     {{ $announcements->appends(\Request::except('page'))->render() }}
-                        
-                    
                 </div>
             </div>
         </div>
