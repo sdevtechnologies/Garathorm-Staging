@@ -123,13 +123,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#date_issue').datetimepicker({
-                format: 'DD/MMM/YYYY',
-                locale: 'en'
-            });
-        });
-        </script>
+    <script src="{{URL::to('custom/js/tools_date_picker.js')}}"></script>
 </x-app-layout>

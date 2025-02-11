@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/tools-scripts.css')}}"/>
     <x-slot name="selectedMenu">
         {{"DNS"}}
     </x-slot>
@@ -50,11 +50,11 @@
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 30%">@sortablelink('title')</th>
-                                <th style="width: 20%">@sortablelink('category')</th>
-                                <th style="width: 30%">@sortablelink('description')
+                                <th class="name-width">@sortablelink('title')</th>
+                                <th class="cat-width">@sortablelink('category')</th>
+                                <th class="name-width">@sortablelink('description')
                                 </th>
-                                <th style="width: 20%">@sortablelink('date_issue','Date of Issue')</th>
+                                <th class="cat-width">@sortablelink('date_issue','Date of Issue')</th>
                             </tr>
                         </thead>
                         <tbody>
