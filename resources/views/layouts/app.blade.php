@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none' ;
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' ;
         img-src 'self'      data:;
         font-src 'self'     https://fonts.bunny.net;
         style-src 'self'    https://fonts.bunny.net
@@ -10,7 +10,8 @@
                             'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
                             'sha256-+pmDa8uXN8Kj5xN6VqwPVeqEISYMYmznE4Il6eDKAZM=';
         script-src 'self'   https://code.jquery.com
-                            https://cdn.jsdelivr.net;">
+                            https://cdn.jsdelivr.net
+                            https://cdnjs.cloudflare.com;">
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

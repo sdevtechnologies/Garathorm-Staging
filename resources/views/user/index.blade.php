@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/user.css')}}"/>
     <x-slot name="selectedMenu">
         {{"User"}}
     </x-slot>
@@ -50,9 +50,9 @@
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 35%" >@sortablelink('name')</th>
-                                <th style="width: 35%">@sortablelink('email')</th>
-                                <th style="width: 30%">Roles
+                                <th class="name-width">@sortablelink('name')</th>
+                                <th class="name-width">@sortablelink('email')</th>
+                                <th class="role-width">Roles
                                 </th>
                             </tr>
                         </thead>

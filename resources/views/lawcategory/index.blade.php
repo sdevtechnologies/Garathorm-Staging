@@ -1,5 +1,5 @@
 <x-app-layout>
-    <link rel="stylesheet" href="{{URL::to('custom/css/category/categorytable.css')}}"/>
+    <link rel="stylesheet" href="{{URL::to('custom/css/categorytable.css')}}"/>
     <x-slot name="selectedMenu">
         {{"LawCat"}}
     </x-slot>
