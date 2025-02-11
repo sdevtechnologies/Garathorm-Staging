@@ -35,7 +35,7 @@
                         <div class="row mb-4">
                             <div class="col-md-3">
                                 <label for="category" class="fw-bold"><span class="text-danger">*</span>Category</label>
-                                <select name="category" id="category" class="form-control" style="width: 100%" required>
+                                <select name="category" id="category" class="form-control" required>
                                     
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}" <?php if (old('category')){
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="assignusers" class="fw-bold">Assigned Users</label>
-                                <select id="assignusers" name="assignusers[]"  class="js-example-basic-multiple js-states form-control" multiple="multiple" style="width:100%;">
+                                <select id="assignusers" name="assignusers[]"  class="js-example-basic-multiple js-states form-control" multiple="multiple">
                                   
                                     @foreach ($users as $user)
                                         <option value="{{$user->id}}" <?php if (old('assignusers')){
@@ -183,27 +183,4 @@
     <script src="{{URL::to('custom/js/create_edit.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-    $(document).ready(function () {
-        /*$('#date_knowledgebase').datetimepicker({
-            format: 'DD/MMM/YYYY',
-            locale: 'en'
-        });*/
-        $("#category").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select category"
-        });
-        $("#assignusers").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select related categories"
-        });
-        $("#publisher").select2({
-            tags: true,
-            width: 'resolve',
-            placeholder: "Select publisher"
-        });
-    });
-    </script>
 </x-app-layout>

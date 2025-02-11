@@ -1,48 +1,23 @@
-
-
-.col-title {
-    width: 20%;
-}
-
-.col-category {
-    width: 10%;
-}
-
-.col-related-category {
-    width: 15%;
-}
-
-.col-description {
-    width: 15%;
-}
-
-.col-publish {
-    width: 10%;
-}
-
-.col-publisher {
-    width: 15%;
-}
-
-.col-date-announcement {
-    width: 10%;
-}
-
-
-
-
-
 /* Table Styling */
+.col-description {
+    width: 17%;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;
-
 }
 
 /* Center Align Checkbox */
 .checkbox {
     text-align: center;
     width: 2%;
+}
+
+/* Name Column */
+.name {
+    width: 100%;
+    font-weight: bold;
 }
 
 /* Title Column */
@@ -57,21 +32,23 @@
 }
 
 .title {
-    width: 21%;
+    width: 20%;
+    background-color: #007bff;
 }
 
-/* Category Columns */
+/* Category Column */
 .category {
-    width: 12%;
-}
-.related {
     width: 15%;
-    white-space: nowrap;
+}
+
+/* Assigned Users Column */
+.assigned-users {
+    width: 15%;
 }
 
 /* Truncate Long Descriptions */
 .description {
-    width: 100%;
+    width: 17%;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -80,25 +57,29 @@
     white-space: normal;
 }
 
-/* Publisher Column */
-.publisher {
-    width: 25%;
+/* File Column */
+.file {
+    width: 10%;
     text-align: center;
 }
 
-.publisher-name {
+/* Mandatory Column */
+.mandatory {
     width: 15%;
 }
 
-/* Date Column */
-.date {
-    width: 15%;
-    font-style: italic;
-    color: #555;
+/* Status Column */
+.status {
+    width: 20%;
 }
 
+.assigned-users {
+width: 15%;
+}
+
+/* Ensure Description Header is Fully Visible */
 th.description {
-    display: block!important; /* Reset display */
+    display: table-cell !important;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     max-height: none;

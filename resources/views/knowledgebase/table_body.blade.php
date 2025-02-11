@@ -3,18 +3,14 @@
     @if(Auth::check() && Auth::user()->hasRole('admin'))
      <!-- This is for For Users -->
     <tr>
-        <td style="width: 2%"><input type="checkbox" name="selectedIds[]"  data-url="{{route('knowledgebases.edit',$knowledgebase)}}" value="{{ $knowledgebase->id }}"></td>
-        <td style="width: 20%" class="text-primary"><a target="_blank" href={{$knowledgebase->url_link}}>{{ $knowledgebase->title }}</a></td>
-        <td style="width: 15%">
+        <td ><input type="checkbox" name="selectedIds[]"  data-url="{{route('knowledgebases.edit',$knowledgebase)}}" value="{{ $knowledgebase->id }}"></td>
+        <td  class="text-primary title"><a target="_blank" href={{$knowledgebase->url_link}}>{{ $knowledgebase->title }}</a></td>
+        <td class="category">
             {{$knowledgebase->category->name}}
         </td>
-        <td style="overflow: hidden;
-        width: 100%;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;">{{ $knowledgebase->description }}</td>
-        <td style="widthL 20%"></td>
-        <td>
+        <td class="col-description" >{{ $knowledgebase->description }}</td>
+        <td ></td>
+        <td class="file">
             @php         
             $fullPath = $knowledgebase->image; 
             $parts = explode("knowledgebase/", $fullPath);
@@ -22,20 +18,20 @@
             @endphp
 
             @if($filename)
-                <a href="{{$knowledgebase->image}}" style="width: 10%; color:#0c6fff;">{{$filename}}</a>
+                <a href="{{$knowledgebase->image}}" >{{$filename}}</a>
             @else
                 No File
             @endif
         </td>
 
-        <td style="width: 13%">{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
+        <td class="mandatory" >{{ $knowledgebase->mandatory==1 ? 'Yes' : 'No' }}</td>
 
-        <td style="width: 15%">
+        <td class="assigned-users">
             @foreach($knowledgebase->relatedCategories as $category)
             {{$category->name}}<br>
             @endforeach
         </td>
-        <td class="dropdown" style="padding-right: 30px">
+        <td class="dropdown status" >
             <button class="btn btn-secondary" type="button" id="statusDropdown{{ $knowledgebase->id }}" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $knowledgebase->status == 0 ? 'Pending' : 'Completed' }}
             </button>
