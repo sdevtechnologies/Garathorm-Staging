@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/category/categorytable.css')}}"/>
     <x-slot name="selectedMenu">
         {{"IndCat"}}
     </x-slot>
@@ -50,7 +50,7 @@
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 100%" >@sortablelink('name','Category Name')</th>
+                                <th class="column-width">@sortablelink('name','Category Name')</th>
                             </tr>
                         </thead>
                         <tbody>

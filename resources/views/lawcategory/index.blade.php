@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <link rel="stylesheet" href="{{URL::to('custom/css/category/categorytable.css')}}"/>
     <x-slot name="selectedMenu">
         {{"LawCat"}}
     </x-slot>
@@ -8,7 +8,7 @@
         
         
         <div class=" mx-auto sm:px-6 lg:px-8">
-            <div class="d-flex justify-content-between">
+            <div class="d   -flex justify-content-between">
                 <h3 class="text-2xl">Category - Laws and Frameworks</h3>
                 <a class="btn btn-light-green" href="{{ route('lawcategory.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Category</a>
             </div>
@@ -50,7 +50,7 @@
                         <thead>
                             <tr>
                                 <th ></th>
-                                <th style="width: 100%" >@sortablelink('name','Category Name')</th>
+                                <th class="column-width">@sortablelink('name','Category Name')</th>
                             </tr>
                         </thead>
                         <tbody>
