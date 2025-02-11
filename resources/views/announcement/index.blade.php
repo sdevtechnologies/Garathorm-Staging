@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <x-slot name="selectedMenu">
         {{"Announcement"}}
     </x-slot>
@@ -83,7 +82,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{URL::to('custom/js/laws_frameworks.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
