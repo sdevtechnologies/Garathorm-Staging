@@ -3,7 +3,7 @@
     <x-slot name="selectedMenu">
         {{"knowledgebase"}}
     </x-slot>
-    
+    <link rel="stylesheet" href="{{URL::to('custom/css/knowledgebase.css')}}"/>
     <div class="py-12">
         
         
@@ -59,29 +59,28 @@
                         <thead>
                         @if(Auth::check() && Auth::user()->hasRole('admin'))
                             <tr>   
-                                <th style="width: 2%"></th>
-                                <th style="width: 20%">@sortablelink('title')</th>
-                                <th style="width: 15%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 15%">Description</th>
-                                <th style="width: 7%">File</th>
-                                <th style="width: 15%">@sortablelink('mandatory','Mandatory')
-                                <th style="width: 15%">Assigned Users</th>
-                                <th style="width: 13%">Status</th>
-                         
-                                <th style="width: 2%"></th>
+                                <th class="checkbox"></th>
+                                <th class="title">@sortablelink('title')</th>
+                                <th class="category">@sortablelink('category.name','Category')</th>
+                                <th class="description">Description</th>
+                                <th class="file">File</th>
+                                <th class="mandatory">@sortablelink('mandatory','Mandatory')</th>
+                                <th class="assigned-users">Assigned Users</th>
+                                <th class="status">Status</th>
+                                <th class="checkbox"></th>
                             </tr>
                         @else
                             <tr>   
-                                <th style="width: 2%"></th>
-                                <th style="width: 8%"> Name</th>
-                                <th style="width: 15%">@sortablelink('title')</th>
-                                <th style="width: 10%">@sortablelink('category.name','Category')</th>
-                                <th style="width: 15%">Assigned Users</th>
-                                <th style="width: 17%">Description</th>
-                                <th style="width: 10%">File</th>
-                                <th style="width: 15%">@sortablelink('mandatory','Mandatory')
-                                <th style="width: 20%">Status</th>
-                                <th style="width: 2%"></th>
+                                <th class="checkbox"></th>
+                                <th class="name">Name</th>
+                                <th class="title">@sortablelink('title')</th>
+                                <th class="category">@sortablelink('category.name','Category')</th>
+                                <th class="assigned-users">Assigned Users</th>
+                                <th class="description">Description</th>
+                                <th class="file">File</th>
+                                <th class="mandatory">@sortablelink('mandatory','Mandatory')</th>
+                                <th class="status">Status</th>
+                                <th class="checkbox"></th>
                             </tr>
                         @endif
                         </thead>
@@ -89,10 +88,7 @@
                             @include('knowledgebase.table_body')
                         </tbody>
                     </table>
-                    
                     {{ $knowledgebases->appends(\Request::except('page'))->render() }}
-                        
-                    
                 </div>
             </div>
         </div>

@@ -97,3 +97,32 @@ $(document).ready(function(){
             placeholder: "Select publisher"
         });
     });
+
+
+    
+    $(document).ready(function () {
+        /*$('#date_announcement').datetimepicker({
+            format: 'DD/MMM/YYYY',
+            locale: 'en'
+        });*/
+        $("#category").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select category"
+        });
+        $("#relatedcategory").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select related categories"
+        });
+        $("#assignusers").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select assigned users"
+        });
+        $("#publisher").select2({
+            tags: true,
+            width: 'resolve',
+            placeholder: "Select publisher"
+        });
+    });

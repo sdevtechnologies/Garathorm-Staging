@@ -62,7 +62,7 @@
                                 <th class="title">@sortablelink('title')</th>
                                 <th class="category">@sortablelink('category.name','Category')</th>
                                 <th class="related">Related Category</th>
-                                <th class="description">Description
+                                <th class="col-description">Description
                                 </th>
                                 
                                 <th class="publisher">@sortablelink('published','Publish')
