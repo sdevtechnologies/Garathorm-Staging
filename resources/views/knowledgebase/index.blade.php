@@ -57,7 +57,6 @@
                     
                     <table class="w-full mt-4 table">
                         <thead>
-                        @if(Auth::check() && Auth::user()->hasRole('admin'))
                             <tr>   
                                 <th class="checkbox"></th>
                                 <th class="title">@sortablelink('title')</th>
@@ -69,20 +68,6 @@
                                 <th class="status">Status</th>
                                 <th class="checkbox"></th>
                             </tr>
-                        @else
-                            <tr>   
-                                <th class="checkbox"></th>
-                                <th class="name">Name</th>
-                                <th class="title">@sortablelink('title')</th>
-                                <th class="category">@sortablelink('category.name','Category')</th>
-                                <th class="assigned-users">Assigned Users</th>
-                                <th class="description">Description</th>
-                                <th class="file">File</th>
-                                <th class="mandatory">@sortablelink('mandatory','Mandatory')</th>
-                                <th class="status">Status</th>
-                                <th class="checkbox"></th>
-                            </tr>
-                        @endif
                         </thead>
                         <tbody>
                             @include('knowledgebase.table_body')
