@@ -21,8 +21,7 @@
                     <li class="sidebar-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                        <a href="{{route('profile.edit')}}"onclick="event.preventDefault();
-                        this.closest('form').submit();" class="sidebar-link">
+                        <a href="{{route('profile.edit')}}" class="sidebar-link" id="logout-button">
                             <i class="fa-solid fa-arrow-right-from-bracket pe-2"></i>
                             Log Out
                         </a>
@@ -147,3 +146,5 @@
         </ul>
     </div>
 </aside>
+
+<script src="{{URL::to('custom/js/logout_submit.js')}}"></script>
