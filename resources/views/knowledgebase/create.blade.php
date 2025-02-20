@@ -94,14 +94,14 @@
                                     <span class="text-danger">*</span> Upload File
                                 </label>
 
-                                <input class="form-upload-file" type="file" name="image" id="image" 
-                                    accept=".jpg, .jpeg, .gif, .txt, .pdf">
+                                <input class="form-upload-file" type="file" name="image" id="image"
+                                    accept=".jpg, .jpeg, .gif, .png, .txt, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .json">
 
-                                <small class="text-muted">Allowed formats: JPG, GIF, TXT, PDF</small>
+                                <small class="text-muted">Allowed formats: JPG, GIF, TXT, Word, Excel, Powerpoint, PDF, JSON (max:50MB)</small>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="url" class="fw-bold"><span class="text-danger">*</span>URL Link</label>
+                            <label for="url" class="fw-bold">URL Link</label>   
                             <div class="d-flex flex-row w-full pasteContainer">
                                 <div class="w-full inputDiv">
                                     <input type="text" name="url_link" value="{{ old('url_link') }}" id="url" placeholder="https://url.com" class="form-control">

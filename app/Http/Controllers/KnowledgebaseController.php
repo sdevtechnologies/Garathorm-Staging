@@ -92,7 +92,7 @@ class KnowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'nullable|mimes:jpg,jpeg,gif,txt,pdf|max:2048',
+            'image' => 'nullable|mimes:jpg,jpeg,gif,png,txt,doc,docx,xls,xlsx,ppt,pptx,pdf,json|max:51200',
             'url_link' => 'nullable|string',
             'description' =>'required',
             'status' => 'required',
@@ -181,8 +181,8 @@ class KnowledgebaseController extends Controller
             'category' => 'required',
             'assignusers' => '',
             'mandatory' => 'required',
-            'image' => 'nullable|mimes:jpg,jpeg,gif,txt,pdf|max:20000',
-            'url_link' => 'required',
+            'image' => 'nullable|mimes:jpg,jpeg,gif,png,txt,doc,docx,xls,xlsx,ppt,pptx,pdf,json|max:51200',
+            'url_link' => 'nullable|string',
             'description' =>'required',
             'status' => 'required'
         ]);
