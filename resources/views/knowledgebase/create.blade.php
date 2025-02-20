@@ -104,7 +104,7 @@
                             <label for="url" class="fw-bold"><span class="text-danger">*</span>URL Link</label>
                             <div class="d-flex flex-row w-full pasteContainer">
                                 <div class="w-full inputDiv">
-                                    <input type="text" name="url_link" value="{{ old('url_link') }}" id="url" placeholder="https://url.com" class="form-control" required>
+                                    <input type="text" name="url_link" value="{{ old('url_link') }}" id="url" placeholder="https://url.com" class="form-control">
                                 </div>
                                 <div class="ml-2">
                                     <button type="button" class="btn btn-primary" id="copyLink">Copy</button>

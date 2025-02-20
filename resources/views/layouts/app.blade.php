@@ -8,7 +8,8 @@
                             https://cdn.jsdelivr.net
                             https://cdnjs.cloudflare.com
                             'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
-                            'sha256-+pmDa8uXN8Kj5xN6VqwPVeqEISYMYmznE4Il6eDKAZM=';
+                            'sha256-+pmDa8uXN8Kj5xN6VqwPVeqEISYMYmznE4Il6eDKAZM='
+                            'sha256-P+cJ8Dv5goQzIaZY+QH8LY1ack6aMF5zE8cyY3/2hlA=';
         script-src 'self'   https://code.jquery.com
                             https://cdn.jsdelivr.net
                             https://cdnjs.cloudflare.com;

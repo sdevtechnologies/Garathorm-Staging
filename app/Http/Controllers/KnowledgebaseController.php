@@ -93,7 +93,7 @@ class KnowledgebaseController extends Controller
             'assignusers' => '',
             'mandatory' => 'required',
             'image' => 'nullable|mimes:jpg,jpeg,gif,txt,pdf|max:2048',
-            'url_link' => 'required',
+            'url_link' => 'nullable|string',
             'description' =>'required',
             'status' => 'required',
         ]);
@@ -138,7 +138,7 @@ class KnowledgebaseController extends Controller
         $knowledgebase->category_id = $validatedData['category'];
         $knowledgebase->mandatory = $validatedData['mandatory'];
         $knowledgebase->image = $validatedData['image'];
-        $knowledgebase->url_link = $validatedData['url_link'];
+        $knowledgebase->url_link = $validatedData['url_link'] ?? '';
         $knowledgebase->description =$validatedData['description'];
         $knowledgebase->status =$validatedData['status'];
 
