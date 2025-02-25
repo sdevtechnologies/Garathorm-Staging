@@ -144,7 +144,7 @@
                             <label for="url" class="fw-bold">URL Link</label>
                             <div class="d-flex flex-row w-full">
                                 <div class="w-full">
-                                    <input type="text" name="url_link" value="{{old('url_link') ? old('url_link') : $knowledgebase->url_link}}" id="url" placeholder="https://url.com" class="form-control" required >
+                                    <input type="text" name="url_link" value="{{old('url_link') ? old('url_link') : $knowledgebase->url_link}}" id="url" placeholder="https://url.com" class="form-control">
                                 </div>
                                 <div class="ml-2">
                                     <button type="button" class="btn btn-primary" id="copyLink">Copy</button>

@@ -233,12 +233,13 @@ class KnowledgebaseController extends Controller
              $knowledgebase->category_id = $validatedData['category'];
              $knowledgebase->mandatory = $validatedData['mandatory'];
              $knowledgebase->image = $validatedData['image'];
-             $knowledgebase->url_link = $validatedData['url_link'];
-             $knowledgebase->description =$validatedData['description'];
-             $knowledgebase->status =$validatedData['status'];
-    
-            // update the knowledgebase to the database
-            $knowledgebase->save();
+             $knowledgebase->url_link = $validatedData['url_link'] ?? '';
+             $knowledgebase->description = $validatedData['description'];
+             $knowledgebase->status = $validatedData['status'];
+             
+             // Update the knowledgebase in the database
+             $knowledgebase->save();
+             
             
             $knowledgebase->relatedCategories()->detach();   
             if(!empty($validatedData['assignusers'])){

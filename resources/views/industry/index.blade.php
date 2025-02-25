@@ -59,16 +59,16 @@
                         <thead>
                         <tr>
                                 <th ></th>
-                                <th class="title">@sortablelink('title')</th>
-                                <th class="category">@sortablelink('category.name','Category')</th>
-                                <th class="related">Related Category</th>
-                                <th class="col-description">Description
+                                <th class="th-title">@sortablelink('title')</th>
+                                <th class="yh-category">@sortablelink('category.name','Category')</th>
+                                <th class="th-related">Related Category</th>
+                                <th class="th-col-description">Description
                                 </th>
                                 
-                                <th class="publisher">@sortablelink('published','Publish')
+                                <th class="th-publisher">@sortablelink('published','Publish')
                                 </th>
-                                <th class="publisher-name">@sortablelink('publisher.name','Publisher')</th>
-                                <th class="date">@sortablelink('date_incident','Date of Incident')</th>
+                                <th class="th-publisher-name">@sortablelink('publisher.name','Publisher')</th>
+                                <th class="th-date">@sortablelink('date_incident','Date of Incident')</th>
                             </tr>
                         </thead>
                         <tbody>
