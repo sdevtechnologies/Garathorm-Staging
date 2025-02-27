@@ -224,7 +224,7 @@ class KnowledgebaseController extends Controller
                 $validatedData['image'] = $path.$filename;
             }
             else{
-                $validatedData['image'] = NULL;
+                $validatedData['image'] = $knowledgebase->image ?? NULL;
             }
     
 
