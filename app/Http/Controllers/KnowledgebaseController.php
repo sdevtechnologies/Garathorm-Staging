@@ -51,21 +51,19 @@ class KnowledgebaseController extends Controller
         // Searching
         if ($request->has('search')) {
             $search = $request->input('search');
-            $query->join('knowledgebase_categories','knowledgebase.category_id','=','knowledgebase_categories.id')
-            ->join('publishers','knowledgebase.publisher_id','=','publishers.id')
-                ->where('knowledgebase.created_at','>=',$twoWeeksAgoDate)
+            $query->join('knowledgebase_categories','knowledgebases.category_id','=','knowledgebase_categories.id')
+                ->where('knowledgebases.created_at','>=',$twoWeeksAgoDate)
                 ->where(function($subquery) use ($search){    
                     $subquery->where('title', 'like', "%$search%")
                     ->orWhere('description', 'like', "%$search%")
-                    ->orWhere('knowledgebase_categories.name', 'like', "%$search%")
-                    ->orWhere('publishers.name', 'like', "%$search%");
+                    ->orWhere('knowledgebase_categories.name', 'like', "%$search%");
                 });
             
             if (DateTime::createFromFormat('d/M/Y',$search) !== false){
                 $searchDate = Carbon::createFromFormat('d/M/Y',$search)->format('Y-m-d');
                 $query->orWhere('date_knowledgebase','like',"%$searchDate%");
             }
-            $query->select('knowledgebase.*');
+            $query->select('knowledgebases.*');
 
         }else{
             $query->where('created_at','>=',$twoWeeksAgoDate);

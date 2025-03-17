@@ -15,7 +15,7 @@
             @endphp
 
             @if($filename)
-                <a href="{{$knowledgebase->image}}" >{{$filename}}</a>
+                <a href="/{{$knowledgebase->image}}" >{{$filename}}</a>
             @else
                 No File
             @endif
