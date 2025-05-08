@@ -57,7 +57,7 @@
                     <li class="sidebar-item">
                         <a href="{{route('announcement.index')}}" class="sidebar-link {{$selectedMenu=='Announcement' ? 'active' : ''}}">
                             <i class="fa-solid fa-shield pe-2"></i>
-                            Defense Leaks Knowledgebase
+                            Geopolitical risk Knowledgebase
                         </a>
                     </li>
                     <li class="sidebar-item">
