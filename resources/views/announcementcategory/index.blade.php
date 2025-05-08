@@ -10,7 +10,7 @@
         <div class=" mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
                 <h3 class="text-2xl">Country - Geopolitical risk</h3>
-                <a class="btn btn-light-green" href="{{ route('announcementcategory.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Category</a>
+                <a class="btn btn-light-green" href="{{ route('announcementcategory.create') }}"><i class="fa-solid fa-plus pe-1"></i>Add Country</a>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class=" mx-auto px-4 py-4">

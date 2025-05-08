@@ -57,7 +57,7 @@
                     <li class="sidebar-item">
                         <a href="{{route('announcement.index')}}" class="sidebar-link {{$selectedMenu=='Announcement' ? 'active' : ''}}">
                             <i class="fa-solid fa-shield pe-2"></i>
-                            Geopolitical risk Knowledgebase
+                            Geopolitical risk
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -124,7 +124,7 @@
                 <li class="sidebar-item">
                     <a href="{{route('announcementcategory.index')}}" class="sidebar-link {{$selectedMenu=='AnnouncementCategory' ? 'active' : ''}}">
                         <i class="fa-solid fa-layer-group pe-2"></i>
-                        Defense leak Knowledgebase Category
+                        Geopolitical risk Category
                     </a>
                 </li>
 
