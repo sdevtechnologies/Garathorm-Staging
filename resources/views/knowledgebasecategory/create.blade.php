@@ -6,7 +6,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="d-flex justify-content-between">
-                <h3 class="text-2xl">Country - Geopolitical risk</h3>
+                <h3 class="text-2xl">Category - Knowledgebase</h3>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
                 <div class="container mx-auto px-4 py-4">
@@ -27,8 +27,8 @@
                     <form action="{{ route('knowledgebasecategories.store') }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label for="name" class="fw-bold">Country Name</label>
-                            <input type="text" name="name"  value="{{ old('name') }}" placeholder="Country Name" id="name" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full" required>
+                            <label for="name" class="fw-bold">Category  Name</label>
+                            <input type="text" name="name"  value="{{ old('name') }}" placeholder="Category  Name" id="name" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full" required>
                         </div>
                         
                         <div class="d-flex justify-content-center">
