@@ -1,5 +1,3 @@
-
-
 /* General Table Styles */
 .table {
     width: 100%;
@@ -15,21 +13,36 @@
     text-transform: uppercase;
 }
 
-.table th {
+.table thead{
+    display:table-header-group;
+}
+
+.table tbody{
+    display:table-row-group;
+}
+
+.table-header-row{
+    width:100%;
+}
+
+.table thead th {
     padding: 12px 15px;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis; /* Adds "..." if text is too long */
     border-bottom: 2px solid #ddd;
+    box-sizing: border-box;
 }
 
 /* Table Body */
-.table td {
+.table tbody td {
     padding: 10px 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: middle;
+    box-sizing: border-box;
 }
+
 
 /* Alternating Row Colors */
 .table tbody tr:nth-child(even) {
@@ -51,14 +64,14 @@
     }
 }
 
-.th-checkbox, .td-checkbox { width: 3% !important; }
-.th-title, .td-title { width: 17% !important; }
-.th-category, .td-category { width: 10% !important; }
-.th-related, .td-related { width: 10% !important; }
-.th-col-description, .td-description { width: 30% !important; }
-.th-publisher, .td-publisher{ width: 10% !important; }
-.th-publisher-name, .td-publisher-name { width: 10% !important; }
-.th-date, .td-date { width: 10% !important; }
+.th-checkbox, .td-checkbox { width: 3%; }
+.th-title, .td-title { width: 17%; }
+.th-category, .td-category { width: 10%; }
+.th-related, .td-related { width: 10%; }
+.th-col-description, .td-description { width: 30%; }
+.th-publisher, .td-publisher{ width: 10%; }
+.th-publisher-name, .td-publisher-name { width: 10%; }
+.th-date, .td-date { width: 10%; }
 
 /* Checkbox Alignment */
 td input[type="checkbox"] {
@@ -76,5 +89,3 @@ td input[type="checkbox"] {
 .table a:hover {
     text-decoration: underline;
 }
-
-

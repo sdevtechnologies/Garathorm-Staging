@@ -54,7 +54,6 @@
                             </div>
                         </form>
                     </div>
-
                     <table class="w-full mt-4 table">
                         <thead>
                             <tr class="table-header-row">
@@ -74,6 +73,7 @@
                             @include('incident.table_body')
                         </tbody>
                     </table>
+		    </div>
                     
                     {{ $incidents->appends(\Request::except('page'))->render() }}
                         
