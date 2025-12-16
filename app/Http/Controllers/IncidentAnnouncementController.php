@@ -97,6 +97,9 @@ class IncidentAnnouncementController extends Controller
             'url_link' => 'required',
             'description' =>'required',
             'published' =>'required',
+            'website' =>'required',
+            'criticality' =>'required',
+            'report' =>'required',
             'date_incident' => 'required|date_format:d/M/Y',
         ]);
 
@@ -133,6 +136,9 @@ class IncidentAnnouncementController extends Controller
         $incident->published = $validatedData['published'];
         $incident->category_id = $validatedData['category'];
         $incident->publisher_id = $validatedData['publisher'];
+        $incident->website = $validatedData['website'];
+        $incident->criticality = $validatedData['criticality'];
+        $incident->report = $validatedData['report'];
         $incident->description =$validatedData['description'] ;
         $incident->url_link = $validatedData['url_link'];
         $incident->date_incident = Carbon::createFromFormat('d/M/Y',$validatedData['date_incident'])->format('Y-m-d');
@@ -175,6 +181,9 @@ class IncidentAnnouncementController extends Controller
             'category' => 'required',
             'relatedcategory' => '',
             'publisher' => 'required',
+            'website' =>'required',
+            'criticality' =>'required',
+            'report' =>'required',
             'url_link' => 'required',
             'description' =>'required',
             'published' =>'required',
@@ -212,6 +221,9 @@ class IncidentAnnouncementController extends Controller
             $incident->title = $validatedData['title'];
             $incident->published = $validatedData['published'];
             $incident->category_id = $validatedData['category'];
+            $incident->website = $validatedData['website'];
+            $incident->criticality = $validatedData['criticality'];
+            $incident->report = $validatedData['report'];
             $incident->publisher_id = $validatedData['publisher'];
             $incident->description =$validatedData['description'];
             $incident->url_link = $validatedData['url_link'];

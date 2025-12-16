@@ -123,6 +123,108 @@
                                 
                             </div>
                         </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="website" class="fw-bold"><span class="text-danger">*</span>Website</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="website" id="websiteyes" <?php 
+                                        if (old('website') && old('website')==1) {
+                                            echo "checked";
+                                        }elseif (old('website') && old('website')==0){
+                                            echo "";
+                                        }elseif ($incident->website==1) {
+                                            echo "checked";
+                                        }
+                                        ?>
+                                    >
+                                    <label class="form-check-label" for="websiteyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="website" id="websiteno" <?php 
+                                    if (old('website') && old('website')==0) {
+                                        echo "checked";
+                                    }elseif (old('website') && old('website')==1){
+                                        echo "";
+                                    }elseif ($incident->website==0) {
+                                        echo "checked";
+                                    }
+                                    ?> >
+                                    <label class="form-check-label" for="websiteno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="criticality" class="fw-bold"><span class="text-danger">*</span>Criticality</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="criticality" id="criticalityyes" <?php 
+                                        if (old('criticality') && old('criticality')==1) {
+                                            echo "checked";
+                                        }elseif (old('criticality') && old('criticality')==0){
+                                            echo "";
+                                        }elseif ($incident->criticality==1) {
+                                            echo "checked";
+                                        }
+                                        ?>
+                                    >
+                                    <label class="form-check-label" for="criticalityyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="criticality" id="criticalityno" <?php 
+                                    if (old('criticality') && old('criticality')==0) {
+                                        echo "checked";
+                                    }elseif (old('criticality') && old('criticality')==1){
+                                        echo "";
+                                    }elseif ($incident->criticality==0) {
+                                        echo "checked";
+                                    }
+                                    ?> >
+                                    <label class="form-check-label" for="criticalityno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="report" class="fw-bold"><span class="text-danger">*</span>Report</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="report" id="reportyes" <?php 
+                                        if (old('report') && old('report')==1) {
+                                            echo "checked";
+                                        }elseif (old('report') && old('report')==0){
+                                            echo "";
+                                        }elseif ($incident->report==1) {
+                                            echo "checked";
+                                        }
+                                        ?>
+                                    >
+                                    <label class="form-check-label" for="reportyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="report" id="reportno" <?php 
+                                    if (old('report') && old('report')==0) {
+                                        echo "checked";
+                                    }elseif (old('report') && old('report')==1){
+                                        echo "";
+                                    }elseif ($incident->report==0) {
+                                        echo "checked";
+                                    }
+                                    ?> >
+                                    <label class="form-check-label" for="reportno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <label for="url" class="fw-bold"><span class="text-danger">*</span>URL Link</label>
                             <div class="d-flex flex-row w-full">

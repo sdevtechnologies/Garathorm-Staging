@@ -104,6 +104,57 @@
                                 </div>-->
                             </div>
                         </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="website" class="fw-bold"><span class="text-danger">*</span>Website</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="website" id="websiteyes">
+                                    <label class="form-check-label" for="websiteyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="website" id="websiteno" checked>
+                                    <label class="form-check-label" for="websiteno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="criticality" class="fw-bold"><span class="text-danger">*</span>Criticality</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="criticality" id="criticalityyes">
+                                    <label class="form-check-label" for="criticalityyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="criticality" id="criticalityno" checked>
+                                    <label class="form-check-label" for="criticalityno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="report" class="fw-bold"><span class="text-danger">*</span>Report</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="1" name="report" id="reportyes" checked>
+                                    <label class="form-check-label" for="reportyes">
+                                    Yes
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="0" name="report" id="reportno">
+                                    <label class="form-check-label" for="reportno">
+                                    No
+                                    </label>
+                                </div>   
+                            </div>
+                        </div>
+
                         <div class="mb-4">
                             <label for="url" class="fw-bold"><span class="text-danger">*</span>URL Link</label>
                             <div class="d-flex flex-row w-full pasteContainer">
